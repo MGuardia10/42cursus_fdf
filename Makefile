@@ -6,7 +6,8 @@ LIBFT = libft/libft.a
 
 # SOURCE FILES
 SRC_DIR			=	src/
-SRC_FILES		= 	main.c			
+SRC_FILES		= 	main.c \
+					parse_args.c	
 SRC				=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 
 # OBJECT FILES
