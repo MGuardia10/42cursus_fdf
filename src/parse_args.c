@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:06:12 by mguardia          #+#    #+#             */
-/*   Updated: 2023/11/23 16:36:42 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/11/27 16:34:56 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,48 +24,43 @@ void	check_args(int argc, char **argv)
 		ft_custom_error("The map cannot be read. Check path.\n");
 }
 
-int	get_height(char *file)
+int	ft_count_words(char **split)
 {
-	int	fd;
-	int	height;
+	int	count;
+	int	i;
 
-	height = 0;
-	fd = open(file, O_RDONLY);
-	while ((line = get_next_line(fd)) != NULL)
-		height++;
-	close(fd);
-	return (height);
-}
-
-int	get_width(char *file)
-{
-	int		fd;
-	int		width;
-	char	**split;
-
-	witdh = 0;
-	fd = open(file, O_RDONLY);
-	while ((line = get_next_line(fd)) != NULL)
+	count = 0;
+	i = 0;
+	while (split[i])
 	{
-		split = ft_split(line, ' ');
-		
-		
+		count++;
+		i++;
 	}
-	close(fd);
-	return (height);
+	return (count);
 }
-void	ft_parse_args(int argc, char **argv, t_coords **fdf)
+
+void	get_dimensions(char *file, t_all *all)
 {
 	int		fd;
-	char	**split;
-	int		height;
-	int		width;
-	// checkear mapa valido
+	char	*line;
+
+	fd = open(file, O_RDONLY);
+	line = get_next_line(fd);
+	if (!line)
+		return ;
+	printf("\nHOLAA\n");
+	all.max_height = 1;
+	all.max_width = ft_count_words(ft_split(line, ' '));
+	while ((line = get_next_line(fd)) != NULL)
+		all->max_height += 1;
+	close(fd);
+	printf("all.width --> %d", all->max_width);
+	printf("all.height --> %d", all->max_height);
+}
+
+void	ft_parse_args(int argc, char **argv, t_all *all)
+{
 	check_args(argc, argv);
-	// leer linea x linea y crear matriz
-	//	- leer cols en total para malloc **.
-	//  - leer filas para malloc * y inicializar cada struct.
-	height = get_height(argv[1]);
-	fdf = (t_coords **)malloc(sizeof(t_coords *) * (height + 1));
-	width = get_width(argv[1]);
+	get_dimensions(argv[1], all);
+	// fdf = (t_coords **)malloc(sizeof(t_coords *) * (height + 1));
 }
