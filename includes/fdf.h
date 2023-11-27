@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:05:13 by mguardia          #+#    #+#             */
-/*   Updated: 2023/11/27 15:31:19 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/11/27 19:10:27 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../libft/libft.h"
 # include <mlx.h>
+# include "../mlx/mlx.h"
 # include <math.h>
 
 # define WIDTH 1000

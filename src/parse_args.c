@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:06:12 by mguardia          #+#    #+#             */
-/*   Updated: 2023/11/27 16:34:56 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/11/27 20:31:52 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,21 @@ void	get_dimensions(char *file, t_all *all)
 	line = get_next_line(fd);
 	if (!line)
 		return ;
-	printf("\nHOLAA\n");
-	all.max_height = 1;
-	all.max_width = ft_count_words(ft_split(line, ' '));
-	while ((line = get_next_line(fd)) != NULL)
+	all->max_width = ft_count_words(ft_split(line, ' '));
+	all->max_height = 1;
+	while (line = get_next_line(fd) != NULL)
 		all->max_height += 1;
 	close(fd);
-	printf("all.width --> %d", all->max_width);
-	printf("all.height --> %d", all->max_height);
+	// printf("all.width --> %d\n", all->max_width);
+	// printf("all.height --> %d", all->max_height);
 }
 
 void	ft_parse_args(int argc, char **argv, t_all *all)
 {
+	t_point	**arr;
+
 	check_args(argc, argv);
 	get_dimensions(argv[1], all);
-	// fdf = (t_coords **)malloc(sizeof(t_coords *) * (height + 1));
+	arr = all->fdf;
+	arr = (t_point **)malloc(sizeof(t_point) * (all->max_height + 1));
 }

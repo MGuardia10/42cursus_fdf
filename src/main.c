@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:03:47 by mguardia          #+#    #+#             */
-/*   Updated: 2023/11/27 15:34:02 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/11/27 18:38:49 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@
 
 int	main(int argc, char **argv)
 {
-	t_all		*all;
+	t_all		all;
 
-	all = NULL;
+	ft_bzero(&all, sizeof(t_all));
 	// Verify args && create array
-	ft_parse_args(argc, argv, all);
+	ft_parse_args(argc, argv, &all);
 	// create_window(all);
 
 

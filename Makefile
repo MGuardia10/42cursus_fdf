@@ -32,6 +32,7 @@ all:	$(NAME)
 
 $(NAME):	$(OBJ_FILES)
 	@make -sC libft
+	@make -sC mlx
 	@echo "$(PINK)Compiling the FDF program.$(CLEAR)"
 	$(CC) $(FLAGS) -Lmlx -lmlx -framework OpenGL -framework AppKit $(OBJ_FILES) $(INCLUDE) $(LIBFT) -o $(NAME)
 	@echo "$(GREEN)[OK]\n$(CLEAR)$(GREEN)Success!$(CLEAR)\n"
