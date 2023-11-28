@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:03:47 by mguardia          #+#    #+#             */
-/*   Updated: 2023/11/27 18:38:49 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/11/28 10:35:10 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,44 @@
 // 	mlx_loop(mlx);
 // }
 
+void	leaks(void)
+{
+	system("leaks -q fdf");
+}
+
+void	print_arr(t_all *all)
+{
+	int x;
+	int y;
+
+	y = 0;
+	while (y < all->max_height)
+	{
+		x = 0;
+		while (x < all->max_width)
+		{
+			printf("%5d", all->fdf[y][x].z);
+			x++;
+		}
+		printf("\n"),
+		y++;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_all		all;
 
+	atexit(leaks);
 	ft_bzero(&all, sizeof(t_all));
 	// Verify args && create array
 	ft_parse_args(argc, argv, &all);
+
 	// create_window(all);
 
 
-	
+	print_arr(&all);
+	ft_free_matrix((void **)all.fdf);
+
 	return (0);
 }

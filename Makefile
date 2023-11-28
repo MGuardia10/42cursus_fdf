@@ -48,6 +48,7 @@ clean:
 
 fclean: clean
 	@make fclean -sC libft
+	@make clean -sC mlx
 	@echo "$(PINK)Removing exec. files.$(CLEAR)"
 	$(RM) $(NAME)
 	@echo "$(GREEN)Exec. files removed correctly\nSuccess!$(CLEAR)"
