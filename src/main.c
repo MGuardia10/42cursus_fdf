@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:03:47 by mguardia          #+#    #+#             */
-/*   Updated: 2023/11/28 16:58:04 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/11/28 19:08:09 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,20 @@
 int	deal_key(int keycode, t_all *all)
 {
 	(void)all;
+	// codigos
+	// - scape --> 53
+	// - flecha hacia izq --> 123
+	// - flecha hacia drcha --> 124
+	// - flecha hacia abajo --> 125
+	// - flecha hacia arriba --> 126
+	// - w (hacia arriba) --> 13
+	// - s (hacia abajo) --> 1
+	// - a (hacia izq) --> 0
+	// - d (hacia drcha) --> 2
+	// - 1 (cambiar colores)--> 18 / 83
+	// - 2 (cambiar colores)--> 19 / 84
+	// - 3 (cambiar colores)--> 20 / 85
+	// - p (cambiar proyeccion (iso/2d)) --> 35
 	printf("%d\n", keycode);
 	return (0);
 }
@@ -23,6 +37,9 @@ int	deal_mouse(int button, int x, int y, t_all *all)
 	(void)all;
 	(void)x;
 	(void)y;
+	// codigos
+	// - ruedita hacia arriba --> 5
+	// - ruedita hacia abajo -->  4
 	printf("%d\n", button);
 	return (0);
 }
