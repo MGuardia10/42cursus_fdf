@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:05:13 by mguardia          #+#    #+#             */
-/*   Updated: 2023/11/28 13:00:38 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/11/28 14:53:07 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ typedef struct s_all
 // Arguments parsing
 void	ft_parse_args(int argc, char **argv, t_all *all);
 
-
 // Utils
-int	ft_count_words(char **split);
+int		ft_count_words(char **split);
 #endif
