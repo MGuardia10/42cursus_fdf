@@ -6,13 +6,13 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:06:12 by mguardia          #+#    #+#             */
-/*   Updated: 2023/11/28 11:10:48 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/11/28 13:01:03 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	check_args(int argc, char **argv)
+static void	check_args(int argc, char **argv)
 {
 	if (argc < 2)
 		ft_custom_error("A map is required.\n\n\tUsage: ./fdf <map>\n\n");
@@ -24,23 +24,7 @@ void	check_args(int argc, char **argv)
 		ft_custom_error("The map cannot be read. Check path.\n");
 }
 
-int	ft_count_words(char **split)
-{
-	int	count;
-	int	i;
-
-	count = 0;
-	i = 0;
-	while (split[i] && ft_isprint(split[i][0]))
-	{
-		count++;
-		i++;
-	}
-	printf("count --> %d", count);
-	return (count);
-}
-
-void	get_dimensions(char *file, t_all *all)
+static void	get_dimensions(char *file, t_all *all)
 {
 	int		fd;
 	char	*line;
@@ -64,7 +48,7 @@ void	get_dimensions(char *file, t_all *all)
 	close(fd);
 }
 
-void	create_matrix(t_all *all, int x, int y, char *z)
+static void	create_matrix(t_all *all, int x, int y, char *z)
 {
 	char	**split;
 
@@ -76,8 +60,12 @@ void	create_matrix(t_all *all, int x, int y, char *z)
 	// colors
 	if (split[1])
 		all->fdf[y][x].color = split[1];
+	else if (all->fdf[y][x].z > 0)
+		all->fdf[y][x].color = RED;
+	else if (all->fdf[y][x].z < 0)
+		all->fdf[y][x].color = BLUE;
 	else
-		all->fdf[y][x].color = DEFAULT_COLOR;
+		all->fdf[y][x].color = WHITE;
 	// is last
 	if ((all->max_height == (y + 1)) && (all->max_width == (x + 1)))
 		all->fdf[y][x].is_last = 1;
@@ -86,7 +74,7 @@ void	create_matrix(t_all *all, int x, int y, char *z)
 	ft_free_matrix((void **)split);
 }
 
-void	parse_map(char *file, t_all *all)
+static void	parse_map(char *file, t_all *all)
 {
 	int		fd;
 	int		x;
@@ -121,8 +109,11 @@ void	ft_parse_args(int argc, char **argv, t_all *all)
 	get_dimensions(argv[1], all);
 	all->fdf = (t_point **)malloc(sizeof(t_point) * (all->max_height + 1));
 	i = 0;
-	while (i < all->max_width)
-		all->fdf[i++] = (t_point *)malloc(sizeof(t_point) * (all->max_width + 1));
+	while (i < all->max_height)
+	{
+		all->fdf[i] = (t_point *)malloc(sizeof(t_point) * (all->max_width + 1));
+		i++;
+	}
 	all->fdf[i] = NULL;
 	parse_map(argv[1], all);
 }

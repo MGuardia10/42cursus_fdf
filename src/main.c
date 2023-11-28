@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:03:47 by mguardia          #+#    #+#             */
-/*   Updated: 2023/11/28 10:35:10 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/11/28 13:02:25 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	leaks(void)
 
 void	print_arr(t_all *all)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	y = 0;
 	while (y < all->max_height)
@@ -40,7 +40,7 @@ void	print_arr(t_all *all)
 		x = 0;
 		while (x < all->max_width)
 		{
-			printf("%5d", all->fdf[y][x].z);
+			printf("%3d", all->fdf[y][x].z);
 			x++;
 		}
 		printf("\n"),
@@ -54,14 +54,9 @@ int	main(int argc, char **argv)
 
 	atexit(leaks);
 	ft_bzero(&all, sizeof(t_all));
-	// Verify args && create array
 	ft_parse_args(argc, argv, &all);
-
 	// create_window(all);
-
-
 	print_arr(&all);
 	ft_free_matrix((void **)all.fdf);
-
 	return (0);
 }
