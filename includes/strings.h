@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:39:03 by mguardia          #+#    #+#             */
-/*   Updated: 2023/11/30 17:21:13 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/11/30 20:15:07 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,19 @@
 
 // -----WINDOW----------------
 # define TITLE			"FDF - mguardia"
-# define MENU_TITLE		""
-# define MENU_1			""
-# define MENU_2			""
-# define MENU_3			""
-# define MENU_4			""
-# define MENU_5			""
-# define MENU_6			""
-# define MENU_7			""
-# define MENU_8			""
-# define MENU_9			""
+# define MAP_INFO		"/* MAP INFO */"
+# define MAP_NAME		"Name: "
+# define X_MAX			"X max: "
+# define Y_MAX			"Y max: "
+# define Z_MAX			"Z max: "
+# define CONTROL_INFO	"/* CONTROLS INFO */"
+# define PROYECTION		"P / I: "
+# define ZOOM			"Scroll: "
+# define MOVE			"Arrows: "
+# define ROTATE			"Drag: "
+# define COLOR_THEMES	"/* COLOR THEMES */"
+# define DEFAULT_THEME	"Number 0: "
+# define B_AND_W_THEME	"Number 1: "
+# define PARTY_THEME	"Number 2: "
 
 #endif
