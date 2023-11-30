@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:44:07 by mguardia          #+#    #+#             */
-/*   Updated: 2023/11/23 14:47:30 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/11/30 09:47:27 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
  * 
  * @return either 0 (the extension is incorrect) or 1 (the extension is correct).
  */
-int	check_format(char *str, char *format)
+int	ft_is_format(char *str, char *format)
 {
 	int	len_str;
 	int	len_format;
@@ -34,8 +34,8 @@ int	check_format(char *str, char *format)
 	while (str[len_str - i] && format[len_format - i])
 	{
 		if (str[len_str - i] != format[len_format - i])
-			return (0);
+			return (false);
 		i++;
 	}
-	return (1);
+	return (true);
 }

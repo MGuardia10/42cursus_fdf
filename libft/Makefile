@@ -57,7 +57,7 @@ FILES	= ft_isalpha.c \
 		  ft_lstmap_bonus.c \
 		  ft_free_matrix.c \
 		  ft_strcmp.c \
-		  ft_check_format.c \
+		  ft_is_format.c \
 		  ft_is_readable.c
 
 # OBJECT FILES
