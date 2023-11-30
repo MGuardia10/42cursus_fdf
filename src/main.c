@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:03:47 by mguardia          #+#    #+#             */
-/*   Updated: 2023/11/30 09:58:42 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:30:02 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,13 @@ int	deal_mouse(int button, int x, int y, t_all *data)
 	return (0);
 }
 
+int	destroy_window(t_all *data)
+{
+	mlx_destroy_window(data->mlx, data->mlx_win);
+	ft_free_matrix((void **)data->fdf);
+	exit(EXIT_SUCCESS);
+}
+
 void	leaks(void)
 {
 	system("leaks -q fdf");
@@ -68,7 +75,7 @@ void	print_arr(t_all *data)
 	}
 }
 
-void	init_data(t_all *data)
+static void	init_data(t_all *data)
 {
 	ft_bzero(data, sizeof(t_all));
 	data->win_width = WIDTH;
@@ -93,12 +100,15 @@ int	main(int argc, char **argv)
 	init_data(&data);
 	ft_parse_args(argc, argv, &data);
 	print_arr(&data);
-	// ft_free_matrix((void **)data.fdf);
-
-	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img, 0, 0);
 	// my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
-	mlx_key_hook(data.mlx_win, deal_key, &data);
-	mlx_mouse_hook(data.mlx_win, deal_mouse, &data);
+	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img, 0, 0);
+	draw_menu(&data);
+	mlx_hook(data.mlx_win, ON_KEYDOWN, 1L<<0, key_press, &data);
+	mlx_hook(data.mlx_win, ON_KEYUP, 1L<<1, key_release, &data);
+	mlx_hook(data.mlx_win, ON_MOUSEDOWN, 1L<<2, mouse_press, &data);
+	mlx_hook(data.mlx_win, ON_MOUSEUP, 1L<<3, mouse_release, &data);
+	mlx_hook(data.mlx_win, ON_MOUSEMOVE, 1L<<13, mouse_move, &data);
+	mlx_hook(data.mlx_win, ON_DESTROY, 1L << 17, destroy_window, &data);
 	mlx_loop(data.mlx);
 	return (0);
 }

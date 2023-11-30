@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:05:13 by mguardia          #+#    #+#             */
-/*   Updated: 2023/11/30 09:57:56 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/11/30 16:41:56 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,19 @@
 # include "keyboard_keycodes.h"
 # include "mouse_keycodes.h"
 # include "strings.h"
+# include "color.h"
 # include "../mlx/mlx.h"
 # include <mlx.h>
 # include <math.h>
 
-# define WIDTH 1000
-# define HEIGHT 1000
+# define WIDTH 1080
+# define HEIGHT 720
 
 # define WHITE "0xFFFFFF"
 # define RED "0xFF0000"
 # define BLUE "0x0000FF"
 
+/* ----------ENUMS--------------- */
 typedef enum
 {
 	ISO,
@@ -40,6 +42,18 @@ typedef enum
 	PARTY
 }	t_theme;
 
+enum {
+	ON_KEYDOWN = 2,
+	ON_KEYUP = 3,
+	ON_MOUSEDOWN = 4,
+	ON_MOUSEUP = 5,
+	ON_MOUSEMOVE = 6,
+	ON_EXPOSE = 12,
+	ON_DESTROY = 17
+};
+
+
+/* ---------STRUCTS--------------- */
 typedef struct s_point
 {
 	int		x;
@@ -78,9 +92,19 @@ typedef struct s_all
 	int		endian;
 }			t_all;
 
-
+/* --------PROTOTYPES------------- */
 // Arguments parsing
 void	ft_parse_args(int argc, char **argv, t_all *data);
+
+// Event-handler functions
+int key_press(int keycode, t_all *data);
+int key_release(int keycode, t_all *data);
+int mouse_press(int button, int x, int y, t_all *data);
+int mouse_release(int button, int x, int y, t_all *data);
+int mouse_move(int x, int y, t_all *data);
+
+// Draw functions
+void	draw_menu(t_all *data);
 
 // Utils
 int		ft_count_words(char **split);

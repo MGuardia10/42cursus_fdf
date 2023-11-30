@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:00:01 by mguardia          #+#    #+#             */
-/*   Updated: 2023/11/30 09:53:22 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:04:24 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,12 @@ void	get_map_name(char *file, t_all *data)
 		data->map.name = file;
 	else
 		data->map.name = name;
+}
+
+void	my_mlx_pixel_put(t_all *data, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
 }
