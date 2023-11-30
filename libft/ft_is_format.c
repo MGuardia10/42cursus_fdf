@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_format.c                                  :+:      :+:    :+:   */
+/*   ft_is_format.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:44:07 by mguardia          #+#    #+#             */
-/*   Updated: 2023/11/30 09:47:27 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/11/30 10:14:35 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
  * 
  * @return either 0 (the extension is incorrect) or 1 (the extension is correct).
  */
-int	ft_is_format(char *str, char *format)
+t_bool	ft_is_format(char *str, char *format)
 {
 	int	len_str;
 	int	len_format;
