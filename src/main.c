@@ -6,15 +6,15 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:03:47 by mguardia          #+#    #+#             */
-/*   Updated: 2023/11/28 19:08:09 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/11/30 09:58:42 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int	deal_key(int keycode, t_all *all)
+int	deal_key(int keycode, t_all *data)
 {
-	(void)all;
+	(void)data;
 	// codigos
 	// - scape --> 53
 	// - flecha hacia izq --> 123
@@ -32,9 +32,9 @@ int	deal_key(int keycode, t_all *all)
 	printf("%d\n", keycode);
 	return (0);
 }
-int	deal_mouse(int button, int x, int y, t_all *all)
+int	deal_mouse(int button, int x, int y, t_all *data)
 {
-	(void)all;
+	(void)data;
 	(void)x;
 	(void)y;
 	// codigos
@@ -44,37 +44,23 @@ int	deal_mouse(int button, int x, int y, t_all *all)
 	return (0);
 }
 
-void	create_window(t_all all)
-{
-	all.mlx = mlx_init();
-	all.mlx_win = mlx_new_window(all.mlx, WIDTH, HEIGHT, "FDF - mguardia"); // revisar width & height
-	all.img = mlx_new_image(all.mlx, WIDTH, HEIGHT);
-	all.addr = mlx_get_data_addr(all.img, &all.bits_per_pixel, &all.line_length,
-								&all.endian);
-	mlx_put_image_to_window(all.mlx, all.mlx_win, all.img, 0, 0);
-	// my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
-	mlx_key_hook(all.mlx_win, deal_key, &all);
-	mlx_mouse_hook(all.mlx_win, deal_mouse, &all);
-	mlx_loop(all.mlx);
-}
-
 void	leaks(void)
 {
 	system("leaks -q fdf");
 }
 
-void	print_arr(t_all *all)
+void	print_arr(t_all *data)
 {
 	int	x;
 	int	y;
 
 	y = 0;
-	while (y < all->max_height)
+	while (y < data->map.max_y)
 	{
 		x = 0;
-		while (x < all->max_width)
+		while (x < data->map.max_x)
 		{
-			printf("%3d", all->fdf[y][x].z);
+			printf("%3d", data->fdf[y][x].z);
 			x++;
 		}
 		printf("\n"),
@@ -82,15 +68,37 @@ void	print_arr(t_all *all)
 	}
 }
 
+void	init_data(t_all *data)
+{
+	ft_bzero(data, sizeof(t_all));
+	data->win_width = WIDTH;
+	data->win_height = HEIGHT;
+	data->mlx = mlx_init();
+	data->mlx_win = mlx_new_window(data->mlx, data->win_width, data->win_height,
+								TITLE);
+	data->img = mlx_new_image(data->mlx, data->win_width, data->win_height);
+	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, 
+								&data->line_length, &data->endian);
+	data->map.max_z = INT_MIN;
+	data->map.zoom = 20;
+	data->map.proyection = ISO;
+	data->map.color_theme = DEFAULT;
+}
+
 int	main(int argc, char **argv)
 {
-	t_all		all;
+	t_all		data;
 
 	atexit(leaks);
-	ft_bzero(&all, sizeof(t_all));
-	ft_parse_args(argc, argv, &all);
-	create_window(all);
-	// print_arr(&all);
-	// ft_free_matrix((void **)all.fdf);
+	init_data(&data);
+	ft_parse_args(argc, argv, &data);
+	print_arr(&data);
+	// ft_free_matrix((void **)data.fdf);
+
+	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img, 0, 0);
+	// my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
+	mlx_key_hook(data.mlx_win, deal_key, &data);
+	mlx_mouse_hook(data.mlx_win, deal_mouse, &data);
+	mlx_loop(data.mlx);
 	return (0);
 }
