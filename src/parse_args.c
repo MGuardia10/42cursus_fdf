@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:06:12 by mguardia          #+#    #+#             */
-/*   Updated: 2023/11/30 09:57:59 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/01 12:48:24 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,15 @@ static void	get_dimensions(char *file, t_all *data)
 	close(fd);
 }
 
+void	get_z_values(int x, int y, int z_value, t_all *data)
+{
+	data->fdf[y][x].z = z_value;
+	if (z_value > data->map.max_z)
+		data->map.max_z = z_value;
+	if (z_value < data->map.min_z)
+		data->map.min_z = z_value;
+}
+
 static void	create_matrix(t_all *data, int x, int y, char *z)
 {
 	char	**split;
@@ -56,6 +65,7 @@ static void	create_matrix(t_all *data, int x, int y, char *z)
 	data->fdf[y][x].x = x;
 	data->fdf[y][x].y = y;
 	split = ft_split(z, ',');
+	get_z_values(x , y, ft_atoi(split[0]), data);
 	data->fdf[y][x].z = ft_atoi(split[0]);
 	// colors
 	if (split[1])
@@ -100,7 +110,7 @@ static void	parse_map(char *file, t_all *data)
 	close(fd);
 }
 
-void	ft_parse_args(int argc, char **argv, t_all *data)
+void	parse_args(int argc, char **argv, t_all *data)
 {
 	int		i;
 

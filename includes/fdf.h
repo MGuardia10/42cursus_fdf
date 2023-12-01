@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:05:13 by mguardia          #+#    #+#             */
-/*   Updated: 2023/11/30 16:41:56 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/01 12:50:23 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <mlx.h>
 # include <math.h>
 
-# define WIDTH 1080
+# define WIDTH 1280
 # define HEIGHT 720
 
 # define WHITE "0xFFFFFF"
@@ -69,6 +69,7 @@ typedef struct s_map
 	int				max_x;
 	int				max_y;
 	int				max_z;
+	int				min_z;
 
 	char			*name;	
 	int				zoom;
@@ -81,8 +82,6 @@ typedef struct s_all
 	t_map	map;
 	t_point	**fdf;
 
-	int		win_width;
-	int		win_height;
 	void	*mlx;
 	void	*mlx_win;
 	void	*img;
@@ -94,7 +93,7 @@ typedef struct s_all
 
 /* --------PROTOTYPES------------- */
 // Arguments parsing
-void	ft_parse_args(int argc, char **argv, t_all *data);
+void	parse_args(int argc, char **argv, t_all *data);
 
 // Event-handler functions
 int key_press(int keycode, t_all *data);
@@ -109,5 +108,7 @@ void	draw_menu(t_all *data);
 // Utils
 int		ft_count_words(char **split);
 void	get_map_name(char *file, t_all *data);
+
+int	destroy_window(t_all *data);
 
 #endif
