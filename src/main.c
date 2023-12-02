@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:03:47 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/01 12:50:32 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/02 19:12:16 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	main(int argc, char **argv)
 	init_data(&data);
 	parse_args(argc, argv, &data);
 	print_arr(&data);
-	// my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
+	draw(&data);
 	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img, 0, 0);
 	draw_menu(&data);
 	mlx_hook(data.mlx_win, ON_KEYDOWN, 1L<<0, key_press, &data);

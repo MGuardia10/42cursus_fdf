@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:05:13 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/01 12:50:23 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/02 17:48:58 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,13 @@
 # include <mlx.h>
 # include <math.h>
 
-# define WIDTH 1280
-# define HEIGHT 720
+# define WIDTH			1280
+# define HEIGHT 		720
+# define MENU_WIDTH		250
 
-# define WHITE "0xFFFFFF"
-# define RED "0xFF0000"
-# define BLUE "0x0000FF"
+# define WHITE 0xFFFFFF
+# define RED 0xFF0000
+# define BLUE 0x0000FF
 
 /* ----------ENUMS--------------- */
 typedef enum
@@ -59,7 +60,7 @@ typedef struct s_point
 	int		x;
 	int		y;
 	int		z;
-	char	*og_color;
+	int		og_color;
 	char	*mod_color;
 	t_bool	is_last;
 }			t_point;
@@ -73,6 +74,8 @@ typedef struct s_map
 
 	char			*name;	
 	int				zoom;
+	int				init_x;
+	int				init_y;
 	t_projection	proyection;
 	t_theme			color_theme;
 }					t_map;
@@ -104,6 +107,9 @@ int mouse_move(int x, int y, t_all *data);
 
 // Draw functions
 void	draw_menu(t_all *data);
+void	draw(t_all *data);
+void	my_mlx_pixel_put(t_all *data, int x, int y, int color);
+
 
 // Utils
 int		ft_count_words(char **split);

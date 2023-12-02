@@ -13,6 +13,7 @@ SRC_FILES		= 	main.c \
 					mouse_press.c \
 					mouse_release.c \
 					mouse_move.c \
+					draw.c \
 					draw_menu.c \
 					utils.c
 SRC				=	$(addprefix $(SRC_DIR), $(SRC_FILES))
