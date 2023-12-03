@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 15:03:20 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/01 12:11:03 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/03 20:47:04 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	draw_map_info1(t_all *data, int x, int *y)
 	char	*str;
 
 	mlx_string_put(data->mlx, data->mlx_win, x, *y, TEXT, MAP_NAME);
-	mlx_string_put(data->mlx, data->mlx_win, x + 90, *y, TEXT, data->map.name);
+	mlx_string_put(data->mlx, data->mlx_win, x + 90, *y, RED, data->map.name);
 	*y += 25;
 	str = ft_itoa(data->map.max_x);
 	if (!str)

@@ -15,6 +15,7 @@ SRC_FILES		= 	main.c \
 					mouse_move.c \
 					draw.c \
 					draw_menu.c \
+					draw_background.c \
 					utils.c
 SRC				=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 

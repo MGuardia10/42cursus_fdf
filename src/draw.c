@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:55:34 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/02 19:15:25 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/03 20:15:57 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ void	draw(t_all *data)
 	int	x;
 	int	y;
 
+	draw_background(data);
 	y = 0;
 	while (y < data->map.max_y)
 	{
@@ -109,10 +110,12 @@ void	draw(t_all *data)
 				bresenham(x, y, x + 1, y, data);
 			if (y < data ->map.max_y - 1)
 				bresenham(x, y, x, y + 1, data);
-			if (data->fdf[y][x].is_last == true)
-				print_last_pixel(x, y, data);
+			// if (data->fdf[y][x].is_last == true)
+			// 	print_last_pixel(x, y, data);
 			x++;
 		}
 		y++;
 	}
+	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
+	draw_menu(data);
 }
