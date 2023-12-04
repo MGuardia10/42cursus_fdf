@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 15:03:20 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/03 20:47:04 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/04 10:34:37 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,8 @@ static void	draw_map_info1(t_all *data, int x, int *y)
 
 static void	draw_controls(t_all *data, int x, int *y)
 {
-	mlx_string_put(data->mlx, data->mlx_win, x, *y, TEXT, PROYECTION);
-	if (data->map.proyection == ISO)
-		mlx_string_put(data->mlx, data->mlx_win, x + 90, *y, TEXT, "Isometric");
-	else
-		mlx_string_put(data->mlx, data->mlx_win, x + 90, *y, TEXT, "Parallel");
-	*y += 25;
 	mlx_string_put(data->mlx, data->mlx_win, x, *y, TEXT, ZOOM);
-	mlx_string_put(data->mlx, data->mlx_win, x + 90, *y, TEXT, "Zoom in / out");
+	mlx_string_put(data->mlx, data->mlx_win, x + 90, *y, TEXT, "Zoom in/out");
 	*y += 25;
 	mlx_string_put(data->mlx, data->mlx_win, x, *y, TEXT, MOVE);
 	mlx_string_put(data->mlx, data->mlx_win, x + 90, *y, TEXT, "Move model");
@@ -77,15 +71,33 @@ static void	draw_controls(t_all *data, int x, int *y)
 static void	draw_colors(t_all *data, int x, int *y)
 {
 	mlx_string_put(data->mlx, data->mlx_win, x, *y, TEXT, DEFAULT_THEME);
-	mlx_string_put(data->mlx, data->mlx_win, x + 90, *y, TEXT, \
-						"Default");
+	mlx_string_put(data->mlx, data->mlx_win, x + 90, *y, TEXT, "Default");
 	*y += 25;
 	mlx_string_put(data->mlx, data->mlx_win, x, *y, TEXT, B_AND_W_THEME);
-	mlx_string_put(data->mlx, data->mlx_win, x + 90, *y, TEXT, \
-						"Black & White");
+	mlx_string_put(data->mlx, data->mlx_win, x + 90, *y, TEXT, "Black & White");
 	*y += 25;
 	mlx_string_put(data->mlx, data->mlx_win, x, *y, TEXT, PARTY_THEME);
 	mlx_string_put(data->mlx, data->mlx_win, x + 90, *y, TEXT, "Party");
+}
+
+void	draw_proyections(t_all *data, int x, int *y)
+{
+	if (data->map.proyection == ISO)
+	{
+		mlx_string_put(data->mlx, data->mlx_win, x, *y, TEXT, PROYECTION_1);
+		mlx_string_put(data->mlx, data->mlx_win, x + 90, *y, RED, "Isometric");
+		*y += 25;
+		mlx_string_put(data->mlx, data->mlx_win, x, *y, TEXT, PROYECTION_2);
+		mlx_string_put(data->mlx, data->mlx_win, x + 90, *y, TEXT, "Parallel");
+	}
+	else
+	{
+		mlx_string_put(data->mlx, data->mlx_win, x, *y, TEXT, PROYECTION_1);
+		mlx_string_put(data->mlx, data->mlx_win, x + 90, *y, TEXT, "Isometric");
+		*y += 25;
+		mlx_string_put(data->mlx, data->mlx_win, x, *y, TEXT, PROYECTION_2);
+		mlx_string_put(data->mlx, data->mlx_win, x + 90, *y, RED, "Parallel");
+	}
 }
 
 void	draw_menu(t_all *data)
@@ -93,7 +105,7 @@ void	draw_menu(t_all *data)
 	int	x;
 	int	y;
 
-	x = 30;
+	x = 25;
 	y = 30;
 	mlx_string_put(data->mlx, data->mlx_win, x, y, TEXT, MAP_INFO);
 	y += 30;
@@ -106,4 +118,8 @@ void	draw_menu(t_all *data)
 	mlx_string_put(data->mlx, data->mlx_win, x, y, TEXT, COLOR_THEMES);
 	y += 30;
 	draw_colors(data, x, &y);
+	y += 50;
+	mlx_string_put(data->mlx, data->mlx_win, x, y, TEXT, PROYECTION);
+	y += 30;
+	draw_proyections(data, x, &y);
 }

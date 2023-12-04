@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:39:03 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/01 12:10:47 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/04 12:33:11 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,15 @@
 # define Z_MAX			"Z max: "
 # define Z_MIN			"Z min: "
 # define CONTROL_INFO	"/* CONTROLS INFO */"
-# define PROYECTION		"P / I: "
 # define ZOOM			"Scroll: "
 # define MOVE			"Arrows: "
 # define ROTATE			"Drag: "
 # define COLOR_THEMES	"/* COLOR THEMES */"
-# define DEFAULT_THEME	"Nbr 0: "
-# define B_AND_W_THEME	"Nbr 1: "
-# define PARTY_THEME	"Nbr 2: "
+# define DEFAULT_THEME	"Nbr 1: "
+# define B_AND_W_THEME	"Nbr 2: "
+# define PARTY_THEME	"Nbr 3: "
+# define PROYECTION		"/* PROYECTION */"
+# define PROYECTION_1	"key P: "
+# define PROYECTION_2	"key I: "
 
 #endif

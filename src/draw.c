@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:55:34 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/03 20:15:57 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/04 12:16:39 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ void	set_proyection(float *x, float *y, float *x1, float *y1, t_all *data)
 		isometric(x, y, data);
 		isometric(x1, y1, data);
 	}
-	// if (data->map.proyection == PARALLEL)
-	// 	parallel();
 }
 
 void	bresenham(float x, float y, float x1, float y1, t_all *data)
@@ -91,7 +89,6 @@ void	print_last_pixel(int x, int y, t_all *data)
 	x *= data->map.zoom;
 	y *= data->map.zoom;
 	my_mlx_pixel_put(data, x + data->map.init_x, y + data->map.init_y, color);
-
 }
 
 void	draw(t_all *data)

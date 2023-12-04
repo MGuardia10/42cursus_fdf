@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:06:12 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/02 18:10:55 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/04 12:40:16 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	get_dimensions(char *file, t_all *data)
 		free(line);
 		line = get_next_line(fd);
 	}
-	data->map.init_x = ((WIDTH + MENU_WIDTH) / 2) - (data->map.max_x * data->map.zoom / 2);
+	data->map.init_x = ((WIDTH / 2) + MENU_WIDTH) - (data->map.max_x * data->map.zoom / 2);
 	data->map.init_y = (HEIGHT / 2) - ((data->map.max_y * data->map.zoom) / 2);
 	// printf("max_x -> %d\n", data->map.max_x);
 	// printf("max_y -> %d\n", data->map.max_y);
@@ -68,12 +68,11 @@ static void	create_matrix(t_all *data, int x, int y, char *z)
 	data->fdf[y][x].y = y;
 	split = ft_split(z, ',');
 	get_z_values(x , y, ft_atoi(split[0]), data);
-	data->fdf[y][x].z = ft_atoi(split[0]);
 	// colors
 	if (split[1])
 	{
 		data->fdf[y][x].og_color = strtol(split[1], NULL, 16);
-		printf("\nstrtol --> %ld\n", strtol(split[1], NULL, 16));
+		// printf("\nstrtol --> %ld\n", strtol(split[1], NULL, 16));
 	}
 	else if (data->fdf[y][x].z != 0)
 		data->fdf[y][x].og_color = RED;
