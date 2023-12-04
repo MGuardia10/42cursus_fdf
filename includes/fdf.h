@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:05:13 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/04 11:31:29 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/04 16:27:55 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,9 @@
 # include "../mlx/mlx.h"
 # include <math.h>
 
-# define WIDTH			1280
-# define HEIGHT 		720
-# define MENU_WIDTH		280
-
-# define MENU_COLOR		0x00585858
-# define BG_COLOR		0x001C1C1C
-# define WHITE 			0xFFFFFF
-# define RED			0xFF0000
-# define BLUE			0x0000FF
+# define WIDTH			1920
+# define HEIGHT 		1080
+# define MENU_WIDTH		300
 
 /* ----------ENUMS--------------- */
 typedef enum

@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:10:51 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/04 12:15:05 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/04 16:01:46 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ t_bool	is_key_move(int keycode)
 void	move_model(int keycode, t_all *data)
 {
 	if (keycode == KEY_LEFT)
-		data->map.init_x -= 10;
+		data->map.init_x -= 20;
 	else if (keycode == KEY_RIGHT)
-		data->map.init_x += 10;
+		data->map.init_x += 20;
 	else if (keycode == KEY_UP)
-		data->map.init_y -= 10;
+		data->map.init_y -= 20;
 	else if (keycode == KEY_DOWN)
-		data->map.init_y += 10;
+		data->map.init_y += 20;
 	draw(data);
 }
 
