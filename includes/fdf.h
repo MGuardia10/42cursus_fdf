@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:05:13 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/05 13:07:14 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/05 14:43:26 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@
 # define MENU_WIDTH			300
 
 /* ----------ENUMS--------------- */
-typedef enum
+typedef enum e_proyection
 {
 	ISO,
 	PARALLEL
 }	t_projection;
 
-typedef enum
+typedef enum e_theme
 {
 	DEFAULT,
 	SPAIN,
@@ -62,7 +62,7 @@ typedef struct s_point
 	int				x;
 	int				y;
 	int				z;
-	int				og_color;
+	long			og_color;
 	char			*mod_color;
 	t_bool			is_last;
 }					t_point;

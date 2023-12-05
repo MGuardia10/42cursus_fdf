@@ -58,7 +58,10 @@ FILES	= ft_isalpha.c \
 		  ft_free_matrix.c \
 		  ft_strcmp.c \
 		  ft_is_format.c \
-		  ft_is_readable.c
+		  ft_is_readable.c \
+		  ft_atoi_base.c \
+		  ft_atol_base.c \
+		  ft_strtol.c
 
 # OBJECT FILES
 OBJS	= $(FILES:.c=.o)

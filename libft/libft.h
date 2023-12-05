@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 11:55:30 by mguardia          #+#    #+#             */
-/*   Updated: 2023/11/30 10:15:51 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/05 14:52:16 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define STDERR 2
 
 // booleans
-typedef enum
+typedef enum e_bool
 {
 	false,
 	true
@@ -122,6 +122,8 @@ void		ft_free_matrix(void **p);
 int			ft_strcmp(const char *s1, const char *s2);
 t_bool		ft_is_format(char *str, char *format);
 t_bool		ft_is_readable(char *file);
-
+int			ft_atoi_base(const char *str, int str_base);
+long		ft_atol_base(const char *str, int str_base);
+long		ft_strtol(const char *str, int str_base);
 
 #endif
