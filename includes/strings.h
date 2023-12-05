@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:39:03 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/05 10:41:21 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/05 19:55:46 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define TITLE1			"/**********************\\"
 # define TITLE2			"*    Fil de Fer (FDF)  *"
 # define TITLE3			"\\**********************/"
-# define MAP_INFO		"/* MODEL INFO */"
+# define MAP_INFO		"/* MODEL\n\n\n INFO */"
 # define MAP_NAME		"Name: "
 # define X_MAX			"X max: "
 # define Y_MAX			"Y max: "

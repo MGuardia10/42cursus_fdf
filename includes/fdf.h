@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:05:13 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/05 14:43:26 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/05 20:49:39 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@
 
 /* ----------MACROS--------------- */
 /*--MAC 42--*/
-// # define WIDTH			1920
-// # define HEIGHT 			1080
-// # define MENU_WIDTH		300
+# define WIDTH			1920
+# define HEIGHT 		1080
+# define MENU_WIDTH		300
 /*--portatil--*/
-# define WIDTH				1400
-# define HEIGHT 			800
-# define MENU_WIDTH			300
+// # define WIDTH				1400
+// # define HEIGHT 			800
+// # define MENU_WIDTH			300
 
 /* ----------ENUMS--------------- */
 typedef enum e_proyection
@@ -57,6 +57,13 @@ enum {
 
 
 /* ---------STRUCTS--------------- */
+typedef struct s_mouse
+{
+	int				mouse_x;
+	int				mouse_y;
+	t_bool			left_click;
+}					t_mouse;
+
 typedef struct s_point
 {
 	int				x;
@@ -84,8 +91,9 @@ typedef struct s_map
 
 typedef struct s_all
 {
-	t_map			map;
+	t_mouse			mouse;
 	t_point			**fdf;
+	t_map			map;
 
 	void			*mlx;
 	void			*mlx_win;
@@ -106,6 +114,12 @@ int 	key_release(int keycode, t_all *data);
 int 	mouse_press(int button, int x, int y, t_all *data);
 int 	mouse_release(int button, int x, int y, t_all *data);
 int 	mouse_move(int x, int y, t_all *data);
+
+// Keypress controls
+void	zoom(int keycode, t_all *data);
+void	move_model_key(int keycode, t_all *data);
+void	change_proyection(int keycode, t_all *data);
+void	change_theme_color(int keycode, t_all *data);
 
 // Draw functions
 void	my_mlx_pixel_put(t_all *data, int x, int y, int color);

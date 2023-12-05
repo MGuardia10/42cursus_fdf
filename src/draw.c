@@ -6,13 +6,11 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:55:34 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/05 11:35:05 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/05 20:49:16 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-
-void	draw_menu_background(t_all *data);
 
 void	set_zoom(float *x, float *y, float *x1, float *y1, int zoom)
 {
@@ -32,7 +30,7 @@ void	isometric(float *x, float *y, t_all *data)
 	coord_y = (int)(*y / data->map.zoom);
 	z = data->fdf[coord_y][coord_x].z;
 	*x = (*x - *y) * cos(0.8);
-	*y = (*x + *y) * sin(0.8) - z;
+	*y = (*x + *y) * sin(0.8) - (z * data->map.zoom);
 }
 
 void	set_proyection(float *x, float *y, float *x1, float *y1, t_all *data)
@@ -63,10 +61,10 @@ void	bresenham(float x, float y, float x1, float y1, t_all *data)
 	{
 		if (x + data->map.init_x <= MENU_WIDTH)
 			my_mlx_pixel_put(data, x + data->map.init_x, y + data->map.init_y, \
-						0xFF07EDED);
+								0xFF07EDED);
 		else
 			my_mlx_pixel_put(data, x + data->map.init_x, y + data->map.init_y, \
-						color);
+								color);
 		x += add_x;
 		y += add_y;
 	}
