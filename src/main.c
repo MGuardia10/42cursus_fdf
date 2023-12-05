@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:03:47 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/03 19:50:50 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/05 12:32:34 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	init_data(t_all *data)
 								&data->line_length, &data->endian);
 	data->map.max_z = INT_MIN;
 	data->map.min_z = INT_MAX;
-	data->map.zoom = 30;
+	data->map.zoom = 10;
 	data->map.proyection = ISO;
 	data->map.color_theme = DEFAULT;
 }
@@ -63,9 +63,13 @@ int	main(int argc, char **argv)
 	t_all		data;
 
 	// atexit(leaks);
+	printf("macro -> %d\n", WHITE);
+	printf("macro -> %d\n", RED);
+	printf("macro -> %d\n", BG_COLOR);
+	printf("macro -> %d\n", MENU_COLOR);
 	init_data(&data);
 	parse_args(argc, argv, &data);
-	print_arr(&data);
+	// print_arr(&data);
 	draw(&data);
 	mlx_hook(data.mlx_win, ON_KEYDOWN, 1L<<0, key_press, &data);
 	mlx_hook(data.mlx_win, ON_KEYUP, 1L<<1, key_release, &data);
