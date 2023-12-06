@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:55:34 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/05 20:49:16 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/06 13:14:31 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,37 @@ void	set_proyection(float *x, float *y, float *x1, float *y1, t_all *data)
 	}
 }
 
+int	*set_color(int x, int y, int x1, int y1, t_all *data)
+{
+	int	*color;
+
+	color = malloc(sizeof(int) * 2);
+	if (data->map.color_theme == DEFAULT)
+	{
+		color[0] = data->fdf[y][x].default_color;
+		color[1] = data->fdf[y1][x1].default_color;
+	}
+	else if (data->map.color_theme == INVERT)
+	{
+		color[0] = data->fdf[y][x].invert_color;
+		color[1] = data->fdf[y1][x1].invert_color;
+	}
+	else if (data->map.color_theme == BETIS)
+	{
+		color[0] = data->fdf[y][x].betis_color;
+		color[1] = data->fdf[y1][x1].betis_color;
+	}
+	return (color);
+}
+
 void	bresenham(float x, float y, float x1, float y1, t_all *data)
 {
 	float	add_x;
 	float	add_y;
 	int		max;
-	long	color;
+	int		*color;
 
-	color = data->fdf[(int)y][(int)x].og_color;
+	color = set_color(x, y, x1, y1, data);
 	set_zoom(&x, &x1, &y, &y1, data->map.zoom);
 	set_proyection(&x, &y, &x1, &y1, data);
 	add_x = x1 - x;
@@ -61,13 +84,14 @@ void	bresenham(float x, float y, float x1, float y1, t_all *data)
 	{
 		if (x + data->map.init_x <= MENU_WIDTH)
 			my_mlx_pixel_put(data, x + data->map.init_x, y + data->map.init_y, \
-								0xFF07EDED);
+								add_shade(0.9, (unsigned int)color[0]));
 		else
 			my_mlx_pixel_put(data, x + data->map.init_x, y + data->map.init_y, \
-								color);
+								color[0]);
 		x += add_x;
 		y += add_y;
 	}
+	free(color);
 }
 
 void	draw(t_all *data)
@@ -82,6 +106,8 @@ void	draw(t_all *data)
 		x = 0;
 		while (x < data->map.max_x)
 		{
+			set_betis_colors(data, x, y);
+			// printf("betis color --> %d\n", data->fdf[y][x].betis_color);
 			if (x < data->map.max_x - 1)
 				bresenham(x, y, x + 1, y, data);
 			if (y < data ->map.max_y - 1)

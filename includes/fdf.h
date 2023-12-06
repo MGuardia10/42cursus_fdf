@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:05:13 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/05 20:49:39 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/06 12:49:28 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@
 
 /* ----------MACROS--------------- */
 /*--MAC 42--*/
-# define WIDTH			1920
-# define HEIGHT 		1080
-# define MENU_WIDTH		300
+// # define WIDTH			1920
+// # define HEIGHT 		1080
+// # define MENU_WIDTH		300
 /*--portatil--*/
-// # define WIDTH				1400
-// # define HEIGHT 			800
-// # define MENU_WIDTH			300
+# define WIDTH				1400
+# define HEIGHT 			800
+# define MENU_WIDTH			300
 
 /* ----------ENUMS--------------- */
 typedef enum e_proyection
@@ -41,8 +41,8 @@ typedef enum e_proyection
 typedef enum e_theme
 {
 	DEFAULT,
-	SPAIN,
-	PARTY
+	INVERT,
+	BETIS
 }	t_theme;
 
 enum {
@@ -69,9 +69,9 @@ typedef struct s_point
 	int				x;
 	int				y;
 	int				z;
-	long			og_color;
-	char			*mod_color;
-	t_bool			is_last;
+	int				default_color;
+	int				invert_color;
+	int				betis_color;
 }					t_point;
 
 typedef struct s_map
@@ -130,6 +130,11 @@ void	draw(t_all *data);
 void	draw_menu(t_all *data);
 void	draw_colors(t_all *data, int x, int *y);
 void	draw_controls(t_all *data, int x, int *y);
+
+// Color functions
+void	set_betis_colors(t_all *data, int x, int y);
+int	add_shade(float transparency, unsigned int color);
+int	invert_color(unsigned int color);
 
 // Utils
 int		ft_count_words(char **split);

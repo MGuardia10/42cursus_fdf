@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:06:12 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/05 20:03:51 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/06 14:10:40 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static void	check_args(int argc, char **argv)
 		ft_custom_error(FORMAT_ERR);
 	else if (ft_is_readable(argv[1]) == false)
 		ft_custom_error(READ_ERR);
+	ft_printf("Map file ✅\n");
+	ft_printf("Parsing map...\n");
 }
 
 static void	get_dimensions(char *file, t_all *data)
@@ -63,27 +65,20 @@ static void	create_matrix(t_all *data, int x, int y, char *z)
 {
 	char	**split;
 
-	// coords
 	data->fdf[y][x].x = x;
 	data->fdf[y][x].y = y;
 	split = ft_split(z, ',');
 	get_z_values(x , y, ft_atoi(split[0]), data);
-	// colors
 	if (split[1])
-	{
-		data->fdf[y][x].og_color = ft_strtol(split[1], 16);
-		// printf("\nstrtol --> %ld\n", strtol(split[1], NULL, 16));
-		// printf("\nmy atoi base --> %ld\n", data->fdf[y][x].og_color);
-	}
-	else if (data->fdf[y][x].z != 0)
-		data->fdf[y][x].og_color = RED;
+		data->fdf[y][x].default_color = ft_strtol(split[1], 16);
+	else if (data->fdf[y][x].z == 0)
+		data->fdf[y][x].default_color = TURQUOISE;
+	else if (data->fdf[y][x].z < 0)
+		data->fdf[y][x].default_color = YELLOW;
 	else
-		data->fdf[y][x].og_color = WHITE;
-	// is last
-	if ((data->map.max_y == (y + 1)) && (data->map.max_x == (x + 1)))
-		data->fdf[y][x].is_last = true;
-	else
-		data->fdf[y][x].is_last = false;
+		data->fdf[y][x].default_color = PINK;
+	data->fdf[y][x].invert_color = invert_color(data->fdf[y][x].default_color);
+	data->fdf[y][x].betis_color = GREEN_BETIS;
 	ft_free_matrix((void **)split);
 }
 
@@ -130,4 +125,6 @@ void	parse_args(int argc, char **argv, t_all *data)
 	}
 	data->fdf[i] = NULL;
 	parse_map(argv[1], data);
+	ft_printf("Map parsing ✅\n");
+	ft_printf("Loading User Interface...\n");
 }

@@ -9,7 +9,6 @@ SRC_DIR			=	src/
 SRC_FILES		= 	main.c \
 					parse_args.c \
 					key_press.c \
-					key_release.c \
 					mouse_press.c \
 					mouse_release.c \
 					mouse_move.c \
@@ -19,6 +18,7 @@ SRC_FILES		= 	main.c \
 					draw_background.c \
 					draw_utils.c \
 					key_press_controls.c \
+					colors.c \
 					utils.c
 SRC				=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 
@@ -27,7 +27,7 @@ OBJ_FILES 		= $(SRC:.c=.o)
 
 # COMPILER OPTIONS
 CC		= gcc
-FLAGS	= -Wall -Werror -Wextra
+FLAGS	= -Wall -Werror -Wextra -g -O3 -fsanitize=address
 INCLUDE = -I includes
 RM		= rm -f
 

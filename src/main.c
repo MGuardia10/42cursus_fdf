@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:03:47 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/05 21:04:26 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/06 12:21:52 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	destroy_window(t_all *data)
 {
 	mlx_destroy_window(data->mlx, data->mlx_win);
 	ft_free_matrix((void **)data->fdf);
+	ft_printf("Goodbye 👋\n");
 	exit(EXIT_SUCCESS);
 }
 
@@ -23,25 +24,6 @@ int	destroy_window(t_all *data)
 // {
 // 	system("leaks -q fdf");
 // }
-
-void	print_arr(t_all *data)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < data->map.max_y)
-	{
-		x = 0;
-		while (x < data->map.max_x)
-		{
-			printf("%3d", data->fdf[y][x].z);
-			x++;
-		}
-		printf("\n"),
-		y++;
-	}
-}
 
 static void	init_data(t_all *data)
 {
@@ -65,13 +47,12 @@ int	main(int argc, char **argv)
 	// atexit(leaks);
 	init_data(&data);
 	parse_args(argc, argv, &data);
-	// print_arr(&data);
 	draw(&data);
-	mlx_hook(data.mlx_win, ON_KEYDOWN, 1L<<0, key_press, &data);
+	mlx_hook(data.mlx_win, ON_MOUSEMOVE, 1L<<13, mouse_move, &data);
 	mlx_hook(data.mlx_win, ON_MOUSEDOWN, 1L<<2, mouse_press, &data);
 	mlx_hook(data.mlx_win, ON_MOUSEUP, 1L<<3, mouse_release, &data);
-	mlx_hook(data.mlx_win, ON_MOUSEMOVE, 1L<<13, mouse_move, &data);
-	mlx_hook(data.mlx_win, ON_DESTROY, 1L << 17, destroy_window, &data);
+	mlx_hook(data.mlx_win, ON_KEYDOWN, 1L<<0, key_press, &data);
+	mlx_hook(data.mlx_win, ON_DESTROY, 1L<<17, destroy_window, &data);
 	mlx_loop(data.mlx);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:39:03 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/05 19:55:46 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/06 11:15:41 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@
 # define Z_MIN			"Z min: "
 # define COLOR_THEMES	"/* COLOR THEMES */"
 # define DEFAULT_THEME	"Nbr 1: "
-# define SPAIN_THEME	"Nbr 2: "
-# define PARTY_THEME	"Nbr 3: "
+# define INVERT_THEME	"Nbr 2: "
+# define BETIS_THEME	"Nbr 3: "
 # define PROYECTION		"/* PROYECTION */"
 # define PROYECTION_1	"key P: "
 # define PROYECTION_2	"key I: "
