@@ -27,7 +27,8 @@ OBJ_FILES 		= $(SRC:.c=.o)
 
 # COMPILER OPTIONS
 CC		= gcc
-FLAGS	= -Wall -Werror -Wextra -g -O3 -fsanitize=address
+FLAGS	= -Wall -Werror -Wextra 
+#-g -O3 -fsanitize=address
 INCLUDE = -I includes
 RM		= rm -f
 

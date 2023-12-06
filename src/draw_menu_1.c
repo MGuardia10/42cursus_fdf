@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 15:03:20 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/05 10:01:13 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/06 16:08:21 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 //proteger bien los mallocs!!!!!!!
 static void	draw_title(t_all *data, int x, int *y)
 {
-		mlx_string_put(data->mlx, data->mlx_win, x, *y, TEXT, TITLE1);
-		*y += 25;
-		mlx_string_put(data->mlx, data->mlx_win, x, *y, TEXT, TITLE2);
-		*y += 25;
-		mlx_string_put(data->mlx, data->mlx_win, x, *y, TEXT, TITLE3);
-		*y += 50;
+	mlx_string_put(data->mlx, data->mlx_win, x, *y, TEXT, TITLE1);
+	*y += 25;
+	mlx_string_put(data->mlx, data->mlx_win, x, *y, TEXT, TITLE2);
+	*y += 25;
+	mlx_string_put(data->mlx, data->mlx_win, x, *y, TEXT, TITLE3);
+	*y += 50;
 }
+
 static void	draw_map_info2(t_all *data, int x, int *y)
 {
 	char	*str;
@@ -70,7 +71,8 @@ static void	draw_proyections(t_all *data, int x, int *y)
 	if (data->map.proyection == ISO)
 	{
 		mlx_string_put(data->mlx, data->mlx_win, x, *y, TEXT, PROYECTION_1);
-		mlx_string_put(data->mlx, data->mlx_win, x + 90, *y, TEXT2, "Isometric");
+		mlx_string_put(data->mlx, data->mlx_win, x + 90, *y, TEXT2, \
+						"Isometric");
 		*y += 25;
 		mlx_string_put(data->mlx, data->mlx_win, x, *y, TEXT, PROYECTION_2);
 		mlx_string_put(data->mlx, data->mlx_win, x + 90, *y, TEXT, "Parallel");

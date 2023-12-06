@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:10:51 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/05 18:45:52 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/06 16:10:09 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,5 @@ int	key_press(int keycode, t_all *data)
 		change_proyection(keycode, data);
 	if (is_key_theme(keycode) == true)
 		change_theme_color(keycode, data);
-	// printf("press --> %d\n", keycode);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:39:03 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/06 11:15:41 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/06 15:54:30 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,11 @@
 # define READ_ERR		"The map cannot be read. Check path. ❌\n"
 
 // -----TERMINAL--------------
-
+# define MAP_FILE_OK	"Map file ✅\n"
+# define PARSING		"Parsing map...\n"
+# define PARSING_OK		"Map parsing ✅\n"
+# define LOADING_UI		"Loading User Interface...\n"
+# define GOOD_BYE		"Goodbye 👋\n"
 
 // -----WINDOW----------------
 # define TITLE			"FDF - mguardia"

@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 19:45:15 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/06 09:33:55 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/06 16:07:20 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,4 @@ void	draw_background(t_all *data)
 			img[i] = BG_COLOR;
 		i++;
 	}
-	// int	x;
-	// int	y;
-
-	// y = 0;
-	// while (y < HEIGHT)
-	// {
-	// 	x = 0;
-	// 	while (x < WIDTH)
-	// 	{
-	// 		if(x < MENU_WIDTH)
-	// 			my_mlx_pixel_put(data, x, y, MENU_COLOR);
-	// 		else
-	// 			my_mlx_pixel_put(data, x, y, BG_COLOR);
-	// 		x++;
-	// 	}
-	// 	y++;
-	// }
 }

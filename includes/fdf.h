@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:05:13 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/06 12:49:28 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/06 19:38:51 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,16 @@ typedef enum e_theme
 	BETIS
 }	t_theme;
 
-enum {
-	ON_KEYDOWN 		= 2,
-	ON_KEYUP 		= 3,
-	ON_MOUSEDOWN 	= 4,
-	ON_MOUSEUP 		= 5,
-	ON_MOUSEMOVE 	= 6,
-	ON_EXPOSE 		= 12,
-	ON_DESTROY 		= 17
+enum
+{
+	ON_KEYDOWN		= 2,
+	ON_KEYUP		= 3,
+	ON_MOUSEDOWN	= 4,
+	ON_MOUSEUP		= 5,
+	ON_MOUSEMOVE	= 6,
+	ON_EXPOSE		= 12,
+	ON_DESTROY		= 17
 };
-
 
 /* ---------STRUCTS--------------- */
 typedef struct s_mouse
@@ -83,6 +83,8 @@ typedef struct s_map
 
 	char			*name;	
 	int				zoom;
+	int				curr_x;
+	int				curr_y;
 	int				init_x;
 	int				init_y;
 	t_projection	proyection;
@@ -106,14 +108,16 @@ typedef struct s_all
 
 /* --------PROTOTYPES------------- */
 // Arguments parsing
-void	parse_args(int argc, char **argv, t_all *data);
+void	check_args(int argc, char **argv);
+void	get_dimensions(char *file, t_all *data);
+void	parse_map(char *file, t_all *data);
 
 // Event-handler functions
-int 	key_press(int keycode, t_all *data);
-int 	key_release(int keycode, t_all *data);
-int 	mouse_press(int button, int x, int y, t_all *data);
-int 	mouse_release(int button, int x, int y, t_all *data);
-int 	mouse_move(int x, int y, t_all *data);
+int		key_press(int keycode, t_all *data);
+int		key_release(int keycode, t_all *data);
+int		mouse_press(int button, int x, int y, t_all *data);
+int		mouse_release(int button, int x, int y, t_all *data);
+int		mouse_move(int x, int y, t_all *data);
 
 // Keypress controls
 void	zoom(int keycode, t_all *data);
@@ -122,9 +126,14 @@ void	change_proyection(int keycode, t_all *data);
 void	change_theme_color(int keycode, t_all *data);
 
 // Draw functions
-void	my_mlx_pixel_put(t_all *data, int x, int y, int color);
-void	draw_background(t_all *data);
 void	draw(t_all *data);
+void	draw_background(t_all *data);
+void	isometric(float *x, float *y, t_all *data);
+void	bresenham(float *coords, float x1, float y1, t_all *data);
+
+// Draw utils
+void	my_mlx_pixel_put(t_all *data, int x, int y, int color);
+void	put_last_pixel(float x, float y, t_all *data);
 
 // Draw menu
 void	draw_menu(t_all *data);
@@ -133,8 +142,8 @@ void	draw_controls(t_all *data, int x, int *y);
 
 // Color functions
 void	set_betis_colors(t_all *data, int x, int y);
-int	add_shade(float transparency, unsigned int color);
-int	invert_color(unsigned int color);
+int		add_shade(float transparency, unsigned int color);
+int		invert_color(unsigned int color);
 
 // Utils
 int		ft_count_words(char **split);
