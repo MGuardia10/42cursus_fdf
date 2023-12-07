@@ -17,7 +17,8 @@ SRC_FILES		= 	main.c \
 					draw_menu_1.c \
 					draw_menu_2.c \
 					draw_background.c \
-					draw_utils.c \
+					draw_utils_1.c \
+					draw_utils_2.c \
 					key_press_controls.c \
 					colors.c \
 					utils.c
@@ -28,8 +29,7 @@ OBJ_FILES 		= $(SRC:.c=.o)
 
 # COMPILER OPTIONS
 CC		= gcc
-FLAGS	= -Wall -Werror -Wextra 
-#-g -O3 -fsanitize=address
+FLAGS	= -Wall -Werror -Wextra -g -O3 -fsanitize=address
 INCLUDE = -I includes
 RM		= rm -f
 

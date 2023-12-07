@@ -6,11 +6,13 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 15:03:20 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/06 16:08:21 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/07 21:41:04 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+#include "../includes/strings.h"
+#include "../includes/color.h"
 
 //proteger bien los mallocs!!!!!!!
 static void	draw_title(t_all *data, int x, int *y)

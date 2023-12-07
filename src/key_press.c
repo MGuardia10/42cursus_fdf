@@ -6,11 +6,12 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:10:51 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/06 16:10:09 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/07 21:41:19 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+#include "../includes/keyboard_keycodes.h"
 
 static t_bool	is_key_zoom(int keycode)
 {

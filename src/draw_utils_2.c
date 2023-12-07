@@ -1,26 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_utils.c                                       :+:      :+:    :+:   */
+/*   draw_utils_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 09:15:40 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/07 13:11:40 by mguardia         ###   ########.fr       */
+/*   Created: 2023/12/07 20:56:29 by mguardia          #+#    #+#             */
+/*   Updated: 2023/12/07 20:59:08 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-
-void	my_mlx_pixel_put(t_all *data, int x, int y, int color)
-{
-	char	*dst;
-
-	if (x >= WIDTH || y >= HEIGHT || x < 0 || y < 0)
-		return ;
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
 
 void	put_last_pixel(float x, float y, t_all *data)
 {
@@ -42,4 +32,20 @@ void	put_last_pixel(float x, float y, t_all *data)
 	else
 		my_mlx_pixel_put(data, x + data->map.init_x, y + data->map.init_y, \
 								color);
+}
+
+int	set_gradient(t_color color1, t_color color2, float ratio)
+{
+	t_color	gradient;
+
+	if (color1.rgb == color2.rgb)
+		return (color1.rgb);
+	if (ratio < 0)
+		ratio = 0;
+	if (ratio >= 1)
+		ratio = 1;
+	gradient.r = color1.r + (int)((color2.r - color1.r) * ratio);
+	gradient.g = color1.g + (int)((color2.g - color1.g) * ratio);
+	gradient.b = color1.b + (int)((color2.b - color1.b) * ratio);
+	return ((gradient.r << 16) | (gradient.g << 8) | gradient.b);
 }

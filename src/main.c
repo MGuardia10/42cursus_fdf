@@ -6,11 +6,12 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:03:47 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/07 12:33:36 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/07 22:03:46 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+#include "../includes/strings.h"
 
 int	destroy_window(t_all *data)
 {
@@ -38,13 +39,12 @@ static void	init_data(t_all *data)
 	data->map.zoom = 6;
 	data->map.proyection = ISO;
 	data->map.color_theme = DEFAULT;
+	data->map.curr_colors = ft_calloc(2, sizeof(t_color));
 }
 
 void	parse_args(int argc, char **argv, t_all *data)
 {
 	int		i;
-	// int		x;
-	// int		y;
 
 	check_args(argc, argv);
 	get_dimensions(argv[1], data);
@@ -57,14 +57,6 @@ void	parse_args(int argc, char **argv, t_all *data)
 	}
 	data->fdf[i] = NULL;
 	parse_map(argv[1], data);
-	// y = 0;
-	// while (y < data->map.max_y)
-	// {
-	// 	x = 0;
-	// 	while (x < data->map.max_x)
-	// 		set_betis_colors(data, x++, y);
-	// 	y++;
-	// }
 	ft_printf(PARSING_OK);
 	ft_printf(LOADING_UI);
 }
@@ -109,3 +101,14 @@ int	main(int argc, char **argv)
 	mlx_loop(data.mlx);
 	return (0);
 }
+
+/* TODO
+	- rotaciones
+	- norminette
+	- tema betis eje z ?
+	- proteger bien los mallocs & leaks
+	- ordenar libft
+	- .o en archivo a parte
+	- poner regla fclean en minilibx
+	- silenciar warnings minilibx OK
+*/

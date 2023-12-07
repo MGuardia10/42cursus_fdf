@@ -6,11 +6,13 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:06:12 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/07 14:58:20 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/07 21:56:51 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+#include "../includes/strings.h"
+#include "../includes/color.h"
 
 void	check_args(int argc, char **argv)
 {

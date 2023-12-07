@@ -6,11 +6,12 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 13:04:45 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/07 15:05:08 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/07 21:41:38 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+#include "../includes/color.h"
 
 void	set_rgb_color(t_color *color)
 {

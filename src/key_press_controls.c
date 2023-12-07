@@ -6,11 +6,13 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 18:23:50 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/06 11:35:41 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/07 21:42:58 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+#include "../includes/keyboard_keycodes.h"
+#include "../includes/mouse_keycodes.h"
 
 void	zoom(int keycode, t_all *data)
 {

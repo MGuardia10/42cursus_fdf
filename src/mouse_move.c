@@ -6,11 +6,12 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:28:28 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/06 16:09:37 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/07 21:41:25 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+#include "../includes/mouse_keycodes.h"
 
 void	move_model_mouse(int x, int y, t_all *data)
 {

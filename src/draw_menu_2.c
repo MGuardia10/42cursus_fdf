@@ -6,11 +6,13 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 09:58:04 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/06 16:08:36 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/07 21:41:10 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+#include "../includes/strings.h"
+#include "../includes/color.h"
 
 void	draw_colors(t_all *data, int x, int *y)
 {

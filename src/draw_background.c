@@ -6,11 +6,12 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 19:45:15 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/06 16:07:20 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/07 21:42:33 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+#include "../includes/color.h"
 
 void	draw_background(t_all *data)
 {

@@ -6,11 +6,12 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:11:06 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/05 21:01:47 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/07 21:41:29 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+#include "../includes/mouse_keycodes.h"
 
 static t_bool	is_scroll(int button)
 {

@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:05:13 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/07 15:01:54 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/07 21:44:52 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,18 @@
 # define FDF_H
 
 # include "../libft/libft.h"
-# include "keyboard_keycodes.h"
-# include "mouse_keycodes.h"
-# include "strings.h"
-# include "color.h"
 # include "../mlx/mlx.h"
 # include <math.h>
 
 /* ----------MACROS--------------- */
 /*--MAC 42--*/
-// # define WIDTH			1920
-// # define HEIGHT 		1080
-// # define MENU_WIDTH		300
+# define WIDTH			1920
+# define HEIGHT 		1080
+# define MENU_WIDTH		300
 /*--portatil--*/
-# define WIDTH				1400
-# define HEIGHT 			800
-# define MENU_WIDTH			300
+// # define WIDTH				1400
+// # define HEIGHT 			800
+// # define MENU_WIDTH			300
 
 /* ----------ENUMS--------------- */
 typedef enum e_proyection
@@ -91,6 +87,8 @@ typedef struct s_map
 	int				zoom;
 	int				init_x;
 	int				init_y;
+	t_bool			is_line_finish;
+	t_color			*curr_colors;
 	t_projection	proyection;
 	t_theme			color_theme;
 }					t_map;
@@ -121,8 +119,6 @@ void	set_betis_color(t_all *data, int x, int y);
 void	set_rgb_color(t_color *color);
 void	set_invert_color(t_color *def, t_color *invert);
 
-
-
 // Event-handler functions
 int		key_press(int keycode, t_all *data);
 int		key_release(int keycode, t_all *data);
@@ -139,12 +135,16 @@ void	change_theme_color(int keycode, t_all *data);
 // Draw functions
 void	draw(t_all *data);
 void	draw_background(t_all *data);
-void	isometric(float *x, float *y, t_all *data);
 void	bresenham(float *coords, float x1, float y1, t_all *data);
 
 // Draw utils
 void	my_mlx_pixel_put(t_all *data, int x, int y, int color);
+void	set_zoom(float *fcoords, float *x, float *y, int zoom);
+void	isometric(float *x, float *y, t_all *data);
 void	put_last_pixel(float x, float y, t_all *data);
+void	set_proyection(float *fcoords, float *x, float *y, t_all *data);
+void	set_color(float *fcoords, int x1, int y1, t_all *data);
+int		set_gradient(t_color color1, t_color color2, float ratio);
 
 // Draw menu
 void	draw_menu(t_all *data);
