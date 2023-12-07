@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 09:15:40 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/06 16:34:00 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/07 13:11:40 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ void	put_last_pixel(float x, float y, t_all *data)
 	int	color;
 
 	if (data->map.color_theme == DEFAULT)
-		color = data->fdf[(int)y][(int)x].default_color;
+		color = data->fdf[(int)y][(int)x].default_color.rgb;
 	else if (data->map.color_theme == INVERT)
-		color = data->fdf[(int)y][(int)x].invert_color;
+		color = data->fdf[(int)y][(int)x].invert_color.rgb;
 	else if (data->map.color_theme == BETIS)
-		color = data->fdf[(int)y][(int)x].betis_color;
+		color = data->fdf[(int)y][(int)x].betis_color.rgb;
 	x *= data->map.zoom;
 	y *= data->map.zoom;
 	if (data->map.proyection == ISO)

@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:05:13 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/06 19:38:51 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/07 15:01:54 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,20 @@ typedef struct s_mouse
 	t_bool			left_click;
 }					t_mouse;
 
+typedef struct s_color
+{
+	int				rgb;
+	int				r;
+	int				g;
+	int				b;
+}					t_color;
+
 typedef struct s_point
 {
-	int				x;
-	int				y;
 	int				z;
-	int				default_color;
-	int				invert_color;
-	int				betis_color;
+	t_color			default_color;
+	t_color			invert_color;
+	t_color			betis_color;
 }					t_point;
 
 typedef struct s_map
@@ -81,10 +87,8 @@ typedef struct s_map
 	int				max_z;
 	int				min_z;
 
-	char			*name;	
+	char			*name;
 	int				zoom;
-	int				curr_x;
-	int				curr_y;
 	int				init_x;
 	int				init_y;
 	t_projection	proyection;
@@ -111,6 +115,13 @@ typedef struct s_all
 void	check_args(int argc, char **argv);
 void	get_dimensions(char *file, t_all *data);
 void	parse_map(char *file, t_all *data);
+// void	set_rgb_color(t_all *data, int x, int y, int flag);
+// void	set_invert_color(t_all *data, int x, int y);
+void	set_betis_color(t_all *data, int x, int y);
+void	set_rgb_color(t_color *color);
+void	set_invert_color(t_color *def, t_color *invert);
+
+
 
 // Event-handler functions
 int		key_press(int keycode, t_all *data);

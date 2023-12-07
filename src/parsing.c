@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_args.c                                       :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:06:12 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/06 20:21:44 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/07 14:58:20 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,24 +60,24 @@ static void	get_z_values(int x, int y, int z_value, t_all *data)
 		data->map.min_z = z_value;
 }
 
-static void	create_matrix(t_all *data, int x, int y, char *z)
+static void	set_point_params(t_all *data, int x, int y, char *z)
 {
 	char	**split;
 
-	data->fdf[y][x].x = x;
-	data->fdf[y][x].y = y;
 	split = ft_split(z, ',');
 	get_z_values(x, y, ft_atoi(split[0]), data);
 	if (split[1])
-		data->fdf[y][x].default_color = ft_strtol(split[1], 16);
+		data->fdf[y][x].default_color.rgb = ft_strtol(split[1], 16);
 	else if (data->fdf[y][x].z == 0)
-		data->fdf[y][x].default_color = TURQUOISE;
+		data->fdf[y][x].default_color.rgb = TURQUOISE;
 	else if (data->fdf[y][x].z < 0)
-		data->fdf[y][x].default_color = YELLOW;
+		data->fdf[y][x].default_color.rgb = YELLOW;
 	else
-		data->fdf[y][x].default_color = PINK;
-	data->fdf[y][x].invert_color = invert_color(data->fdf[y][x].default_color);
-	data->fdf[y][x].betis_color = GREEN_BETIS;
+		data->fdf[y][x].default_color.rgb = PINK;
+	set_rgb_color(&data->fdf[y][x].default_color);
+	set_invert_color(&data->fdf[y][x].default_color, \
+								&data->fdf[y][x].invert_color);
+	set_betis_color(data, x, y);
 	ft_free_matrix((void **)split);
 }
 
@@ -99,7 +99,7 @@ void	parse_map(char *file, t_all *data)
 		split = ft_split(line, ' ');
 		while (x < data->map.max_x)
 		{
-			create_matrix(data, x, y, split[x]);
+			set_point_params(data, x, y, split[x]);
 			x++;
 		}
 		free(line);

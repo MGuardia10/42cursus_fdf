@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 16:40:37 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/06 15:48:53 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/07 10:40:52 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define COLOR_H
 
 /* ----------TEXT COLORS--------------- */
-# define TEXT	0xFFFFFF
-# define TEXT2	0xE5037E
+# define TEXT			0xFFFFFF
+# define TEXT2			0xE5037E
 
 /* ----------BACKGROUNDS--------------- */
 # define MENU_COLOR		0x212323

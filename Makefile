@@ -7,7 +7,8 @@ LIBFT = libft/libft.a
 # SOURCE FILES
 SRC_DIR			=	src/
 SRC_FILES		= 	main.c \
-					parse_args.c \
+					parsing.c \
+					parsing_utils.c \
 					key_press.c \
 					mouse_press.c \
 					mouse_release.c \

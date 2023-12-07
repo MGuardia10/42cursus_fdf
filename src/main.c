@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:03:47 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/06 19:40:23 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/07 12:33:36 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ static void	init_data(t_all *data)
 void	parse_args(int argc, char **argv, t_all *data)
 {
 	int		i;
-	int		x;
-	int		y;
+	// int		x;
+	// int		y;
 
 	check_args(argc, argv);
 	get_dimensions(argv[1], data);
@@ -57,14 +57,14 @@ void	parse_args(int argc, char **argv, t_all *data)
 	}
 	data->fdf[i] = NULL;
 	parse_map(argv[1], data);
-	y = 0;
-	while (y < data->map.max_y)
-	{
-		x = 0;
-		while (x < data->map.max_x)
-			set_betis_colors(data, x++, y);
-		y++;
-	}
+	// y = 0;
+	// while (y < data->map.max_y)
+	// {
+	// 	x = 0;
+	// 	while (x < data->map.max_x)
+	// 		set_betis_colors(data, x++, y);
+	// 	y++;
+	// }
 	ft_printf(PARSING_OK);
 	ft_printf(LOADING_UI);
 }
