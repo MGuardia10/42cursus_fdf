@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 15:03:20 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/07 21:41:04 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/09 11:24:31 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,17 @@ static void	draw_map_info2(t_all *data, int x, int *y)
 	char	*str;
 
 	str = ft_itoa(data->map.max_z);
-	if (!str)
+	if (!str) // malloc
 		return ;
 	mlx_string_put(data->mlx, data->mlx_win, x, *y, TEXT, Z_MAX);
-	mlx_string_put(data->mlx, data->mlx_win, x + 90, *y, TEXT, str);
+	mlx_string_put(data->mlx, data->mlx_win, x + 75, *y, TEXT, str);
 	*y += 25;
 	free(str);
 	str = ft_itoa(data->map.min_z);
-	if (!str)
+	if (!str) // malloc
 		return ;
 	mlx_string_put(data->mlx, data->mlx_win, x, *y, TEXT, Z_MIN);
-	mlx_string_put(data->mlx, data->mlx_win, x + 90, *y, TEXT, str);
+	mlx_string_put(data->mlx, data->mlx_win, x + 75, *y, TEXT, str);
 	free(str);
 }
 
@@ -49,20 +49,20 @@ static void	draw_map_info1(t_all *data, int x, int *y)
 	char	*str;
 
 	mlx_string_put(data->mlx, data->mlx_win, x, *y, TEXT, MAP_NAME);
-	mlx_string_put(data->mlx, data->mlx_win, x + 90, *y, TEXT2, data->map.name);
+	mlx_string_put(data->mlx, data->mlx_win, x + 75, *y, TEXT2, data->map.name);
 	*y += 25;
 	str = ft_itoa(data->map.max_x);
-	if (!str)
+	if (!str) // malloc
 		return ;
 	mlx_string_put(data->mlx, data->mlx_win, x, *y, TEXT, X_MAX);
-	mlx_string_put(data->mlx, data->mlx_win, x + 90, *y, TEXT, str);
+	mlx_string_put(data->mlx, data->mlx_win, x + 75, *y, TEXT, str);
 	free(str);
 	*y += 25;
 	str = ft_itoa(data->map.max_y);
-	if (!str)
+	if (!str) // malloc
 		return ;
 	mlx_string_put(data->mlx, data->mlx_win, x, *y, TEXT, Y_MAX);
-	mlx_string_put(data->mlx, data->mlx_win, x + 90, *y, TEXT, str);
+	mlx_string_put(data->mlx, data->mlx_win, x + 75, *y, TEXT, str);
 	free(str);
 	*y += 25;
 	draw_map_info2(data, x, y);
@@ -73,19 +73,19 @@ static void	draw_proyections(t_all *data, int x, int *y)
 	if (data->map.proyection == ISO)
 	{
 		mlx_string_put(data->mlx, data->mlx_win, x, *y, TEXT, PROYECTION_1);
-		mlx_string_put(data->mlx, data->mlx_win, x + 90, *y, TEXT2, \
+		mlx_string_put(data->mlx, data->mlx_win, x + 75, *y, TEXT2, \
 						"Isometric");
 		*y += 25;
 		mlx_string_put(data->mlx, data->mlx_win, x, *y, TEXT, PROYECTION_2);
-		mlx_string_put(data->mlx, data->mlx_win, x + 90, *y, TEXT, "Parallel");
+		mlx_string_put(data->mlx, data->mlx_win, x + 75, *y, TEXT, "Parallel");
 	}
 	else
 	{
 		mlx_string_put(data->mlx, data->mlx_win, x, *y, TEXT, PROYECTION_1);
-		mlx_string_put(data->mlx, data->mlx_win, x + 90, *y, TEXT, "Isometric");
+		mlx_string_put(data->mlx, data->mlx_win, x + 75, *y, TEXT, "Isometric");
 		*y += 25;
 		mlx_string_put(data->mlx, data->mlx_win, x, *y, TEXT, PROYECTION_2);
-		mlx_string_put(data->mlx, data->mlx_win, x + 90, *y, TEXT2, "Parallel");
+		mlx_string_put(data->mlx, data->mlx_win, x + 75, *y, TEXT2, "Parallel");
 	}
 }
 

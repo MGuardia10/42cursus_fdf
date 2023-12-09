@@ -6,20 +6,43 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:55:34 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/07 21:21:38 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/09 11:53:44 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+#include "../includes/color.h"
 
-void	set_properties(float *fcoords, float *x1, float *y1, t_all *data)
+static void	draw_background(t_all *data)
+{
+	int	*img;
+	int	i;
+
+	ft_bzero(data->addr, WIDTH * HEIGHT * (data->bits_per_pixel / 8));
+	img = (int *)(data->addr);
+	i = 0;
+	while (i < HEIGHT * WIDTH)
+	{
+		if (i % WIDTH < MENU_WIDTH)
+			img[i] = MENU_COLOR;
+		else
+			img[i] = BG_COLOR;
+		i++;
+	}
+}
+
+static void	set_properties(float *fcoords, float *x1, float *y1, t_all *data)
 {
 	set_color(fcoords, (int)*x1, (int)*y1, data);
 	set_zoom(fcoords, x1, y1, data->map.zoom);
-	set_proyection(fcoords, x1, y1, data);
+	if (data->map.proyection == ISO)
+	{
+		isometric(&fcoords[0], &fcoords[1], data);
+		isometric(x1, y1, data);
+	}
 }
 
-void	print_pixel(float max, float *fcoords, t_color *color, t_all *data)
+static void	print_pixel(float max, float *fcoords, t_color *color, t_all *data)
 {
 	static float	ratio;
 	float			step;
@@ -41,7 +64,7 @@ void	print_pixel(float max, float *fcoords, t_color *color, t_all *data)
 			data->map.init_y, gradient);
 }
 
-void	bresenham(float *coords, float x1, float y1, t_all *data)
+static void	bresenham(float *coords, float x1, float y1, t_all *data)
 {
 	float	*fcoords;
 	float	step_x;
@@ -49,6 +72,8 @@ void	bresenham(float *coords, float x1, float y1, t_all *data)
 	int		max;
 
 	fcoords = ft_calloc(2, sizeof(float));
+	if (!fcoords) // malloc
+		return ;
 	ft_memcpy(fcoords, coords, 2 * sizeof(float));
 	set_properties(fcoords, &x1, &y1, data);
 	step_x = x1 - fcoords[0];
@@ -64,4 +89,28 @@ void	bresenham(float *coords, float x1, float y1, t_all *data)
 	}
 	data->map.is_line_finish = true;
 	free(fcoords);
+}
+
+void	draw(t_all *data)
+{
+	float	coords[2];
+
+	draw_background(data);
+	coords[1] = 0;
+	while (coords[1] < data->map.max_y)
+	{
+		coords[0] = 0;
+		while (coords[0] < data->map.max_x)
+		{
+			if (coords[0] < data->map.max_x - 1)
+				bresenham(coords, coords[0] + 1, coords[1], data);
+			if (coords[1] < data->map.max_y - 1)
+				bresenham(coords, coords[0], coords[1] + 1, data);
+			coords[0]++;
+		}
+		coords[1]++;
+	}
+	put_last_pixel(--coords[0], --coords[1], data);
+	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img, 0, 0);
+	draw_menu(data);
 }

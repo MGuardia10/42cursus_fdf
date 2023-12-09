@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 18:23:50 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/07 21:42:58 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/08 17:55:28 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ void	change_theme_color(int keycode, t_all *data)
 	}
 	if (keycode == KEY_3 || keycode == KEY_3_SIDE)
 	{
-		if (data->map.color_theme == BETIS)
+		if (data->map.color_theme == LAND)
 			return ;
-		data->map.color_theme = BETIS;
+		data->map.color_theme = LAND;
 	}
 	draw(data);
 }

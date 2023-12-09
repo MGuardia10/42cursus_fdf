@@ -8,20 +8,18 @@ LIBFT = libft/libft.a
 SRC_DIR			=	src/
 SRC_FILES		= 	main.c \
 					parsing.c \
-					parsing_utils.c \
-					key_press.c \
-					mouse_press.c \
-					mouse_release.c \
-					mouse_move.c \
 					draw.c \
+					draw_utils.c \
 					draw_menu_1.c \
 					draw_menu_2.c \
-					draw_background.c \
-					draw_utils_1.c \
-					draw_utils_2.c \
-					key_press_controls.c \
 					colors.c \
-					utils.c
+					key_press_controls.c \
+					key_press.c \
+					mouse_press.c \
+					mouse_move.c \
+					mouse_release.c \
+					utils.c \
+					exit.c
 SRC				=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 
 # OBJECT FILES

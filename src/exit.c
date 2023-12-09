@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_background.c                                  :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/03 19:45:15 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/07 21:42:33 by mguardia         ###   ########.fr       */
+/*   Created: 2023/12/09 11:58:45 by mguardia          #+#    #+#             */
+/*   Updated: 2023/12/09 12:13:39 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-#include "../includes/color.h"
+#include "../includes/strings.h"
 
-void	draw_background(t_all *data)
+int	destroy_window(t_all *data)
 {
-	int	*img;
-	int	i;
-
-	ft_bzero(data->addr, WIDTH * HEIGHT * (data->bits_per_pixel / 8));
-	img = (int *)(data->addr);
-	i = 0;
-	while (i < HEIGHT * WIDTH)
-	{
-		if (i % WIDTH < MENU_WIDTH)
-			img[i] = MENU_COLOR;
-		else
-			img[i] = BG_COLOR;
-		i++;
-	}
+	mlx_destroy_window(data->mlx, data->mlx_win);
+	ft_free_matrix((void **)data->fdf);
+	ft_printf(GOOD_BYE);
+	exit(EXIT_SUCCESS);
 }

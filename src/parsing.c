@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:06:12 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/07 21:56:51 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/09 12:06:33 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../includes/strings.h"
 #include "../includes/color.h"
 
-void	check_args(int argc, char **argv)
+static void	check_args(int argc, char **argv)
 {
 	if (argc < 2)
 		ft_custom_error(ARG_ERR_1);
@@ -28,7 +28,7 @@ void	check_args(int argc, char **argv)
 	ft_printf(PARSING);
 }
 
-void	get_dimensions(char *file, t_all *data)
+static void	get_dimensions(char *file, t_all *data)
 {
 	int		fd;
 	char	*line;
@@ -36,7 +36,7 @@ void	get_dimensions(char *file, t_all *data)
 
 	fd = open(file, O_RDONLY);
 	line = get_next_line(fd);
-	if (!line)
+	if (!line) // malloc ?
 		return ;
 	split = ft_split(line, ' ');
 	data->map.max_x = ft_count_words(split);
@@ -53,20 +53,11 @@ void	get_dimensions(char *file, t_all *data)
 	close(fd);
 }
 
-static void	get_z_values(int x, int y, int z_value, t_all *data)
-{
-	data->fdf[y][x].z = z_value;
-	if (z_value > data->map.max_z)
-		data->map.max_z = z_value;
-	if (z_value < data->map.min_z)
-		data->map.min_z = z_value;
-}
-
 static void	set_point_params(t_all *data, int x, int y, char *z)
 {
 	char	**split;
 
-	split = ft_split(z, ',');
+	split = ft_split(z, ','); // malloc ?
 	get_z_values(x, y, ft_atoi(split[0]), data);
 	if (split[1])
 		data->fdf[y][x].default_color.rgb = ft_strtol(split[1], 16);
@@ -79,11 +70,10 @@ static void	set_point_params(t_all *data, int x, int y, char *z)
 	set_rgb_color(&data->fdf[y][x].default_color);
 	set_invert_color(&data->fdf[y][x].default_color, \
 								&data->fdf[y][x].invert_color);
-	set_betis_color(data, x, y);
 	ft_free_matrix((void **)split);
 }
 
-void	parse_map(char *file, t_all *data)
+static void	parse_map(char *file, t_all *data)
 {
 	int		fd;
 	int		x;
@@ -97,7 +87,7 @@ void	parse_map(char *file, t_all *data)
 	while (y < data->map.max_y)
 	{
 		x = 0;
-		line = get_next_line(fd);
+		line = get_next_line(fd); // malloc ?
 		split = ft_split(line, ' ');
 		while (x < data->map.max_x)
 		{
@@ -109,4 +99,33 @@ void	parse_map(char *file, t_all *data)
 		y++;
 	}
 	close(fd);
+}
+
+void	parse_args(int argc, char **argv, t_all *data)
+{
+	int		x;
+	int		y;
+
+	check_args(argc, argv);
+	get_dimensions(argv[1], data);
+	data->fdf = ft_calloc(data->map.max_y + 1, sizeof(t_point));
+	if (!data->fdf) // malloc
+		return ;
+	y = -1;
+	while (++y < data->map.max_y)
+	{
+		data->fdf[y] = ft_calloc(data->map.max_x + 1, sizeof(t_point));
+		if (!data->fdf[y]) // malloc
+			return ;
+	}
+	data->fdf[y] = NULL;
+	parse_map(argv[1], data);
+	y = -1;
+	while (++y < data->map.max_y)
+	{
+		x = 0;
+		while (x < data->map.max_x)
+			set_land_color(data->map.max_z, &data->fdf[y][x++]);
+	}
+	ft_printf(PARSING_OK);
 }
