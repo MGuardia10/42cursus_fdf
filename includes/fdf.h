@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:05:13 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/09 12:10:56 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/09 20:46:25 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ typedef struct s_map
 	int				zoom;
 	int				init_x;
 	int				init_y;
-	t_bool			is_land_theme;
 	t_bool			is_line_finish;
 	t_color			*curr_colors;
 	t_projection	proyection;

@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 09:15:40 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/09 12:25:33 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/09 20:46:14 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	set_color(float *fcoords, int x1, int y1, t_all *data)
 		data->map.curr_colors[0] = data->fdf[y][x].invert_color;
 		data->map.curr_colors[1] = data->fdf[y1][x1].invert_color;
 	}
-	else if (data->map.color_theme == LAND && data->map.is_land_theme == false)
+	else if (data->map.color_theme == LAND)
 	{
 		data->map.curr_colors[0] = data->fdf[y][x].land_color;
 		data->map.curr_colors[1] = data->fdf[y1][x1].land_color;
