@@ -1,4 +1,5 @@
 *.o
 *.a
 fdf
+.DS_Store
 42MapGenerator
