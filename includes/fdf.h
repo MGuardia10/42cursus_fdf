@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:05:13 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/07 21:44:52 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/09 12:10:56 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 
 /* ----------MACROS--------------- */
 /*--MAC 42--*/
-# define WIDTH			1920
-# define HEIGHT 		1080
-# define MENU_WIDTH		300
+// # define WIDTH			1920
+// # define HEIGHT 		1080
+// # define MENU_WIDTH		300
 /*--portatil--*/
-// # define WIDTH				1400
-// # define HEIGHT 			800
-// # define MENU_WIDTH			300
+# define WIDTH				1400
+# define HEIGHT 			800
+# define MENU_WIDTH			300
 
 /* ----------ENUMS--------------- */
 typedef enum e_proyection
@@ -38,7 +38,7 @@ typedef enum e_theme
 {
 	DEFAULT,
 	INVERT,
-	BETIS
+	LAND
 }	t_theme;
 
 enum
@@ -73,7 +73,7 @@ typedef struct s_point
 	int				z;
 	t_color			default_color;
 	t_color			invert_color;
-	t_color			betis_color;
+	t_color			land_color;
 }					t_point;
 
 typedef struct s_map
@@ -87,6 +87,7 @@ typedef struct s_map
 	int				zoom;
 	int				init_x;
 	int				init_y;
+	t_bool			is_land_theme;
 	t_bool			is_line_finish;
 	t_color			*curr_colors;
 	t_projection	proyection;
@@ -109,15 +110,8 @@ typedef struct s_all
 }					t_all;
 
 /* --------PROTOTYPES------------- */
-// Arguments parsing
-void	check_args(int argc, char **argv);
-void	get_dimensions(char *file, t_all *data);
-void	parse_map(char *file, t_all *data);
-// void	set_rgb_color(t_all *data, int x, int y, int flag);
-// void	set_invert_color(t_all *data, int x, int y);
-void	set_betis_color(t_all *data, int x, int y);
-void	set_rgb_color(t_color *color);
-void	set_invert_color(t_color *def, t_color *invert);
+// parsing
+void	parse_args(int argc, char **argv, t_all *data);
 
 // Event-handler functions
 int		key_press(int keycode, t_all *data);
@@ -134,33 +128,32 @@ void	change_theme_color(int keycode, t_all *data);
 
 // Draw functions
 void	draw(t_all *data);
-void	draw_background(t_all *data);
-void	bresenham(float *coords, float x1, float y1, t_all *data);
-
-// Draw utils
-void	my_mlx_pixel_put(t_all *data, int x, int y, int color);
-void	set_zoom(float *fcoords, float *x, float *y, int zoom);
-void	isometric(float *x, float *y, t_all *data);
-void	put_last_pixel(float x, float y, t_all *data);
-void	set_proyection(float *fcoords, float *x, float *y, t_all *data);
-void	set_color(float *fcoords, int x1, int y1, t_all *data);
-int		set_gradient(t_color color1, t_color color2, float ratio);
-
-// Draw menu
 void	draw_menu(t_all *data);
 void	draw_colors(t_all *data, int x, int *y);
 void	draw_controls(t_all *data, int x, int *y);
 
+// Draw utils
+void	my_mlx_pixel_put(t_all *data, int x, int y, int color);
+void	set_color(float *fcoords, int x1, int y1, t_all *data);
+void	set_zoom(float *fcoords, float *x, float *y, int zoom);
+void	isometric(float *x, float *y, t_all *data);
+void	put_last_pixel(float x, float y, t_all *data);
+
 // Color functions
-void	set_betis_colors(t_all *data, int x, int y);
+void	set_rgb_color(t_color *color);
+void	set_invert_color(t_color *def, t_color *invert);
+t_color	set_land_color(int max_z, t_point *point);
+int		set_gradient(t_color color1, t_color color2, float ratio);
 int		add_shade(float transparency, unsigned int color);
-int		invert_color(unsigned int color);
 
 // Utils
 int		ft_count_words(char **split);
 void	get_map_name(char *file, t_all *data);
+void	get_z_values(int x, int y, int z_value, t_all *data);
+float	get_percentage(int nbr, int min_value, int max_value);
 int		ft_max_value(float x, float y);
 
+// exit
 int		destroy_window(t_all *data);
 
 #endif

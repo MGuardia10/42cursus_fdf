@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:39:03 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/06 15:54:30 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/09 12:30:22 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define TITLE1			"/**********************\\"
 # define TITLE2			"*    Fil de Fer (FDF)  *"
 # define TITLE3			"\\**********************/"
-# define MAP_INFO		"/* MODEL\n\n\n INFO */"
+# define MAP_INFO		"/* MODEL INFO */"
 # define MAP_NAME		"Name: "
 # define X_MAX			"X max: "
 # define Y_MAX			"Y max: "
@@ -44,9 +44,12 @@
 # define PROYECTION		"/* PROYECTION */"
 # define PROYECTION_1	"key P: "
 # define PROYECTION_2	"key I: "
-# define CONTROL_INFO	"/* CONTROLS */"
-# define ZOOM			"Scroll: "
-# define MOVE			"Arrows: "
-# define ROTATE			"Drag: "
+# define CONTROL_INFO	"/* OTHER CONTROLS */"
+# define ZOOM			"Zoom: "
+# define ZOOM_1			"-> scroll"
+# define ZOOM_2			"-> + / -"
+# define MOVE			"Move model: "
+# define MOVE_1			"-> arrows"
+# define MOVE_2			"-> click + drag"
 
 #endif

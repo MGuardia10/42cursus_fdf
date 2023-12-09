@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 16:40:37 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/07 10:40:52 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/09 12:28:45 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,16 @@
 # define BG_COLOR		0x001111
 
 /* ----------COLOR THEMES-------------- */
+/* --DEFAULT--*/
 # define TURQUOISE 		0x07EDED
 # define PINK			0xE5037E
 # define YELLOW			0xEAE234
-# define GREEN_BETIS	0x00954C
-# define WHITE_BETIS	0xFFFFFF
+
+/*--LAND--*/
+# define BLUE_SEA		0x2196f3
+# define GREEN_1		0x006414
+# define GREEN_2		0x003400
+# define DARK_BROWN		0x5A4309
+# define WHITE_LAND		0xC4BDAC
 
 #endif
