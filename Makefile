@@ -1,8 +1,12 @@
 # NAME
 NAME = fdf
 
-# LIBFT
-LIBFT = libft/libft.a
+# LIBRARIES AND FRAMEWORKS
+LIBFT			= libft/libft.a
+MLX				= mlx/libmlx.a #= -Lmlx -lmlx
+FRAMEWORKS		= -framework OpenGL -framework AppKit
+# -Lmlx -lmlx -> La opción -Lmlx especifica dónde encontrar la biblioteca
+# y -lmlx especifica la biblioteca en sí que debe ser enlazada.
 
 # SOURCE FILES
 SRC_DIR			=	src/
@@ -23,13 +27,14 @@ SRC_FILES		= 	main.c \
 SRC				=	$(addprefix $(SRC_DIR), $(SRC_FILES))
 
 # OBJECT FILES
-OBJ_FILES 		= $(SRC:.c=.o)
+OBJ_DIR			= objs/
+OBJ_FILES 		= $(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 
 # COMPILER OPTIONS
 CC		= gcc
-FLAGS	= -Wall -Werror -Wextra -g -O3 -fsanitize=address
+FLAGS	= -Wall -Werror -Wextra -g -O3
 INCLUDE = -I includes
-RM		= rm -f
+RM		= rm -rf
 
 # COLORS
 RED		=	\033[91;1m
@@ -43,27 +48,34 @@ CLEAR	=	\033[0m
 all:	$(NAME)
 
 $(NAME):	$(OBJ_FILES)
+	@echo "\n$(BLUE)Compiling libft and MinilibX.$(CLEAR)"
 	@make -sC libft
+	@echo "$(GREEN)[libft --> OK]$(CLEAR)"
 	@make -sC mlx
-	@echo "$(PINK)Compiling the FDF program.$(CLEAR)"
-	$(CC) $(FLAGS) -Lmlx -lmlx -framework OpenGL -framework AppKit $(OBJ_FILES) $(INCLUDE) $(LIBFT) -o $(NAME)
-	@echo "$(GREEN)[OK]\n$(CLEAR)$(GREEN)Success!$(CLEAR)\n"
+	@echo "$(GREEN)[MiniLibX --> OK]\n$(CLEAR)"
+	@echo "$(BLUE)Compiling the FDF program.$(CLEAR)"
+	$(CC) $(FLAGS) $(INCLUDE) $(LIBFT) $(MLX) $(FRAMEWORKS) $(OBJ_FILES) -o $(NAME)
+	@echo "$(GREEN)[fdf --> OK]\n$(CLEAR)$(GREEN)Success!$(CLEAR)\n"
+	@echo "$(PINK)\tUsage: ./fdf <path_map>$(CLEAR)\n"
 
-%.o: %.c
-	$(CC) $(FLAGS) -Imlx -c -o $@ $<
+
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	@mkdir -p $(OBJ_DIR)
+	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
-	@echo "$(PINK)Removing compiled files.$(CLEAR)"
+	@echo "$(BLUE)Removing compiled files.$(CLEAR)"
 	@make clean -sC libft
-	$(RM) $(OBJ_FILES)
+	@make clean -sC mlx
+	$(RM) $(OBJ_DIR)
 	@echo "$(GREEN)Object files removed correctly\n$(CLEAR)"
 
 fclean: clean
 	@make fclean -sC libft
-	@make clean -sC mlx
-	@echo "$(PINK)Removing exec. files.$(CLEAR)"
+	@make fclean -sC mlx
+	@echo "$(BLUE)Removing exec. files.$(CLEAR)"
 	$(RM) $(NAME)
-	@echo "$(GREEN)Exec. files removed correctly\nSuccess!$(CLEAR)"
+	@echo "$(GREEN)Object files and binary removed correctly\n$(CLEAR)"
 
 re: fclean all
 
