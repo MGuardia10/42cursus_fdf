@@ -1,5 +1,5 @@
 # 42cursus_fdf
-This project is about representing a landscape as a 3D object in which all surfaces are outlined in lines. The use of the MinilibX is mandatory. The project includes as additional features isometric and parallel projections, three color themes (default, inverted colors and a specific theme for landscapes), model translation and zoom.
+This project is about representing a landscape as a 3D object in which all surfaces are outlined in lines. The use of the MinilibX is mandatory. The project includes as bonus features isometric and parallel projections, three color themes (default, inverted colors and a specific theme for landscapes), model traslation and zoom.
 
 ![C](https://img.shields.io/badge/C-a?style=for-the-badge&logo=C&color=grey)
 
