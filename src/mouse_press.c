@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:11:06 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/07 21:41:29 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/10 18:59:18 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static t_bool	is_scroll(int button)
 
 static void	set_move_coords(int x, int y, t_all *data)
 {
+	if (x < 0 || y < 0)
+		return ;
 	data->mouse.left_click = true;
 	data->mouse.mouse_x = x;
 	data->mouse.mouse_y = y;

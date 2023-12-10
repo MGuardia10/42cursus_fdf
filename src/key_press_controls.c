@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 18:23:50 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/08 17:55:28 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/10 19:04:07 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@ void	zoom(int keycode, t_all *data)
 {
 	if (keycode == KEY_SUM || keycode == KEY_SUM2 || keycode == SCROLL_DOWN)
 	{
-		if (data->map.zoom == 100)
+		if (data->map.zoom > 250)
 			return ;
-		if (data->map.zoom == 24 && data->map.max_x > 200)
+		if (data->map.zoom > 25 && data->map.max_x > 200)
 			return ;
-		data->map.zoom += 2;
+		data->map.zoom *= 1.1;
 	}
 	if (keycode == KEY_RES || keycode == KEY_RES2 || keycode == SCROLL_UP)
 	{
-		if (data->map.zoom == 2)
+		if (data->map.zoom < 2)
 			return ;
-		data->map.zoom -= 2;
+		data->map.zoom /= 1.1;
 	}
 	draw(data);
 }
@@ -53,12 +53,14 @@ void	change_proyection(int keycode, t_all *data)
 		if (data->map.proyection == PARALLEL)
 			return ;
 		data->map.proyection = PARALLEL;
+		data->map.init_x -= data->map.max_x;
 	}
 	if (keycode == KEY_I)
 	{
 		if (data->map.proyection == ISO)
 			return ;
 		data->map.proyection = ISO;
+		data->map.init_x += data->map.max_x;
 	}
 	draw(data);
 }

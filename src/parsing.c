@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:06:12 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/09 12:06:33 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/10 20:52:05 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ static void	get_dimensions(char *file, t_all *data)
 
 	fd = open(file, O_RDONLY);
 	line = get_next_line(fd);
-	if (!line) // malloc ?
-		return ;
 	split = ft_split(line, ' ');
+	if (!line || !split)
+		return (malloc_err(data));
 	data->map.max_x = ft_count_words(split);
 	ft_free_matrix((void **)split);
 	while (line)
@@ -57,7 +57,9 @@ static void	set_point_params(t_all *data, int x, int y, char *z)
 {
 	char	**split;
 
-	split = ft_split(z, ','); // malloc ?
+	split = ft_split(z, ',');
+	if (!split)
+		return (malloc_err(data));
 	get_z_values(x, y, ft_atoi(split[0]), data);
 	if (split[1])
 		data->fdf[y][x].default_color.rgb = ft_strtol(split[1], 16);
@@ -83,12 +85,14 @@ static void	parse_map(char *file, t_all *data)
 
 	get_map_name(file, data);
 	fd = open(file, O_RDONLY);
-	y = 0;
-	while (y < data->map.max_y)
+	y = -1;
+	while (++y < data->map.max_y)
 	{
 		x = 0;
-		line = get_next_line(fd); // malloc ?
+		line = get_next_line(fd);
 		split = ft_split(line, ' ');
+		if (!line ||!split)
+			return (malloc_err(data));
 		while (x < data->map.max_x)
 		{
 			set_point_params(data, x, y, split[x]);
@@ -96,7 +100,6 @@ static void	parse_map(char *file, t_all *data)
 		}
 		free(line);
 		ft_free_matrix((void **)split);
-		y++;
 	}
 	close(fd);
 }
@@ -109,14 +112,14 @@ void	parse_args(int argc, char **argv, t_all *data)
 	check_args(argc, argv);
 	get_dimensions(argv[1], data);
 	data->fdf = ft_calloc(data->map.max_y + 1, sizeof(t_point));
-	if (!data->fdf) // malloc
-		return ;
+	if (!data->fdf)
+		return (malloc_err(data));
 	y = -1;
 	while (++y < data->map.max_y)
 	{
 		data->fdf[y] = ft_calloc(data->map.max_x + 1, sizeof(t_point));
-		if (!data->fdf[y]) // malloc
-			return ;
+		if (!data->fdf[y])
+			return (malloc_err(data));
 	}
 	data->fdf[y] = NULL;
 	parse_map(argv[1], data);

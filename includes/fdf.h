@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:05:13 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/10 11:54:35 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/10 20:18:38 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 
 /* ----------MACROS--------------- */
 /*--MAC 42--*/
-// # define WIDTH			1920
-// # define HEIGHT 		1080
-// # define MENU_WIDTH		300
+# define WIDTH			1920
+# define HEIGHT 		1080
+# define MENU_WIDTH		300
 /*--portatil--*/
-# define WIDTH				1400
-# define HEIGHT 			800
-# define MENU_WIDTH			300
+// # define WIDTH				1400
+// # define HEIGHT 			800
+// # define MENU_WIDTH			300
 
 /* ----------ENUMS--------------- */
 typedef enum e_proyection
@@ -84,7 +84,7 @@ typedef struct s_map
 	int				min_z;
 
 	char			*name;
-	int				zoom;
+	float			zoom;
 	int				init_x;
 	int				init_y;
 	t_bool			is_line_finish;
@@ -153,6 +153,7 @@ float	get_percentage(int nbr, int min_value, int max_value);
 int		ft_max_value(float x, float y);
 
 // exit
-int		destroy_window(t_all *data);
+int		terminate_program(t_all *data);
+void	malloc_err(t_all *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 09:15:40 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/09 20:46:14 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/10 18:52:11 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,11 @@ void	isometric(float *x, float *y, t_all *data)
 	int	coord_x;
 	int	coord_y;
 
-	coord_x = (int)(*x / data->map.zoom);
-	coord_y = (int)(*y / data->map.zoom);
+	coord_x = (int)(*x);
+	coord_y = (int)(*y);
 	z = data->fdf[coord_y][coord_x].z;
+	*x *= data->map.zoom;
+	*y *= data->map.zoom;
 	*x = (*x - *y) * cos(0.8);
 	*y = (*x + *y) * sin(0.8) - (z);
 }
@@ -78,10 +80,10 @@ void	put_last_pixel(float x, float y, t_all *data)
 		color = data->fdf[(int)y][(int)x].invert_color.rgb;
 	else if (data->map.color_theme == LAND)
 		color = data->fdf[(int)y][(int)x].land_color.rgb;
-	x *= data->map.zoom;
-	y *= data->map.zoom;
 	if (data->map.proyection == ISO)
 		isometric(&x, &y, data);
+	x *= data->map.zoom;
+	y *= data->map.zoom;
 	if (x + data->map.init_x <= MENU_WIDTH)
 		my_mlx_pixel_put(data, x + data->map.init_x, y + data->map.init_y, \
 						add_shade(0.9, (unsigned int)color));

@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:39:03 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/09 12:30:22 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/10 20:18:09 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define PARSING_OK		"Map parsing ✅\n"
 # define LOADING_UI		"Loading User Interface...\n"
 # define GOOD_BYE		"Goodbye 👋\n"
+# define MALLOC_ERR		"Problem allocating memory\n"
 
 // -----WINDOW----------------
 # define TITLE			"FDF - mguardia"
