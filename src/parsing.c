@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:06:12 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/10 20:52:05 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/11 10:41:12 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,8 @@ static void	get_dimensions(char *file, t_all *data)
 		free(line);
 		line = get_next_line(fd);
 	}
-	data->map.init_x = ((WIDTH / 2 + MENU_WIDTH)) - \
-					((data->map.max_x / 2) * sin(0.8) * data->map.zoom);
-	data->map.init_y = (HEIGHT / 2) - ((data->map.max_y * data->map.zoom) / 2);
+	data->map.init_x = ((WIDTH - MENU_WIDTH) / 2) + MENU_WIDTH;
+	data->map.init_y = (HEIGHT / 2) - (data->map.max_y);
 	close(fd);
 }
 
@@ -91,7 +90,7 @@ static void	parse_map(char *file, t_all *data)
 		x = 0;
 		line = get_next_line(fd);
 		split = ft_split(line, ' ');
-		if (!line ||!split)
+		if (!line || !split)
 			return (malloc_err(data));
 		while (x < data->map.max_x)
 		{
