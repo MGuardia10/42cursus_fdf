@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 18:23:50 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/10 19:04:07 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/11 14:18:51 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ void	zoom(int keycode, t_all *data)
 void	move_model_key(int keycode, t_all *data)
 {
 	if (keycode == KEY_LEFT)
-		data->map.init_x -= 20;
-	else if (keycode == KEY_RIGHT)
 		data->map.init_x += 20;
+	else if (keycode == KEY_RIGHT)
+		data->map.init_x -= 20;
 	else if (keycode == KEY_UP)
-		data->map.init_y -= 20;
-	else if (keycode == KEY_DOWN)
 		data->map.init_y += 20;
+	else if (keycode == KEY_DOWN)
+		data->map.init_y -= 20;
 	draw(data);
 }
 

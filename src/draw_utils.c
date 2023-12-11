@@ -6,7 +6,7 @@
 /*   By: mguardia <mguardia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 09:15:40 by mguardia          #+#    #+#             */
-/*   Updated: 2023/12/11 10:40:52 by mguardia         ###   ########.fr       */
+/*   Updated: 2023/12/11 12:59:45 by mguardia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,6 @@ void	put_last_pixel(float x, float y, t_all *data)
 		color = data->fdf[(int)y][(int)x].land_color.rgb;
 	if (data->map.proyection == ISO)
 		isometric(&x, &y, data);
-	x *= data->map.zoom;
-	y *= data->map.zoom;
 	if (x + data->map.init_x <= MENU_WIDTH)
 		my_mlx_pixel_put(data, x + data->map.init_x, y + data->map.init_y, \
 						add_shade(0.9, (unsigned int)color));
