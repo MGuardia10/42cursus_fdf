@@ -2,6 +2,7 @@
 This project is about representing a landscape as a 3D object in which all surfaces are outlined in lines. The use of the MinilibX is mandatory. The project includes as bonus features isometric and parallel projections, three color themes (default, inverted colors and a specific theme for landscapes), model traslation and zoom.
 
 ![C](https://img.shields.io/badge/C-a?style=for-the-badge&logo=C&color=grey)
+![Makefile](https://img.shields.io/badge/Makefile-a?style=for-the-badge&logo=monster&logoColor=orange&color=grey)
 
 You can see the subject [**HERE.**](https://github.com/MGuardia10/42cursus/blob/main/subjects/en/fdf_subject_en.pdf)
 
